@@ -1,25 +1,49 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  useEffect(() => {
-    document.getElementById('cod-atribuicao').innerHTML =
-      '// Criando uma array com um tamanho específico\nint[] matriz = new int[5];\n\n'
-      + '// Cria uma nova array, passando um valor\nint[] matriz = {1, 2, 3};\n\n'
-      + '// Aplica um novo valor a array\nstring[] matriz = new string[] {"A", "BB", "CCC"};';
+	const [pastas, setPastas] = useState([]);
 
-    //hljs.highlightAll();
-  }, []);
+	useEffect(() => {
+		//hljs.highlightAll();
 
-  return (
-    <>
-      <h1>Arrays</h1>
+		fetch("docs.json")
+			.then(response => response.json())
+			.then(data => {
+				setPastas(data);
+			});
+
+		fetch("docs/cSharp/Arrays.txt")
+			.then(response => response.text())
+			.then(data => {
+				// create a new FileReader object
+				var reader = new FileReader();
+
+				// define a function to handle the file data once it's loaded
+				reader.onload = function (event) {
+					// the file contents are stored in the result property
+					var fileContents = event.target.result;
+					console.log(fileContents);
+				};
+
+				// read the contents of the file
+				reader.readAsText(new Blob([data]));
+			});
+	}, []);
+
+	return (
+		<>
+			{/* <h1>Arrays</h1>
 
       <strong>Atribuição</strong>
       <pre>
         <code class="language-csharp" id="cod-atribuicao"></code>
-      </pre>
+      </pre> */}
 
-      {/* <br />
+			{pastas.map(pasta => <div key={pasta.id}>
+				{pasta.name || pasta.id}
+			</div>)}
+
+			{/* <br />
       <br />
       <strong>Propriedades</strong>
       <br />
@@ -76,8 +100,8 @@ function App() {
 /// <summary>Junta uma array em uma string separando os valores por: ','</summary>
 /// <returns>String com a junção</returns>
       string String = string.Join("','", matriz); */}
-    </>
-  );
+		</>
+	);
 }
 
 export default App;

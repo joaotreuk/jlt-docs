@@ -1,0 +1,8 @@
+// Criando uma array com um tamanho específico
+int[] matriz = new int[5];
+
+// Cria uma nova array, passando um valor
+int[] matriz = {1, 2, 3};
+
+// Aplica um novo valor a array
+string[] matriz = new string[] {"A", "BB", "CCC"};
