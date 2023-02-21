@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import { Offcanvas } from 'bootstrap'; // Usa indiretamente
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import './App.css';
 
 function App() {
 	const [pastas, setPastas] = useState([]);
@@ -31,17 +35,61 @@ function App() {
 	}, []);
 
 	return (
-		<>
+		<div className="bg-dark h-100">
+			<nav className="navbar bg-primary">
+				<form className="container-fluid justify-content-start">
+					<button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+						aria-controls="offcanvasExample">
+						<FontAwesomeIcon icon={faBars} />
+					</button>
+				</form>
+			</nav>
+			<div className="offcanvas offcanvas-start text-bg-dark show" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+				<div className="offcanvas-header">
+					<h5 className="offcanvas-title" id="offcanvasExampleLabel">Codes</h5>
+					<button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+				<div className="offcanvas-body">
+					<ul className="list-unstyled ps-0">
+						<li className="mb-1">
+							<button className="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fw-semibold text-white" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+								Home
+							</button>
+							<div className="collapse show" id="home-collapse">
+								<ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Overview</a></li>
+									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Updates</a></li>
+									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Reports</a></li>
+								</ul>
+							</div>
+						</li>
+						<li className="mb-1">
+							<button className="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fw-semibold text-white" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+								Dashboard
+							</button>
+							<div className="collapse" id="dashboard-collapse">
+								<ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Overview</a></li>
+									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Weekly</a></li>
+									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Monthly</a></li>
+									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Annually</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
 			{/* <h1>Arrays</h1>
 
       <strong>Atribuição</strong>
       <pre>
         <code class="language-csharp" id="cod-atribuicao"></code>
       </pre> */}
-
-			{pastas.map(pasta => <div key={pasta.id}>
-				{pasta.name || pasta.id}
-			</div>)}
+			<ul>
+				{pastas.map(pasta => <li key={pasta.id}>
+					<a>{pasta.name || pasta.id}</a>
+				</li>)}
+			</ul>
 
 			{/* <br />
       <br />
@@ -100,7 +148,7 @@ function App() {
 /// <summary>Junta uma array em uma string separando os valores por: ','</summary>
 /// <returns>String com a junção</returns>
       string String = string.Join("','", matriz); */}
-		</>
+		</div>
 	);
 }
 
