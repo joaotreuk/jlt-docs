@@ -1,22 +1,46 @@
 import { useEffect, useState } from "react";
-import { Offcanvas } from 'bootstrap'; // Usa indiretamente
+import Accordion from 'react-bootstrap/Accordion';
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
+function CustomToggle({ children, eventKey }) {
+	const [expanded, setExpanded] = useState(false);
+	const decoratedOnClick = useAccordionButton(eventKey, () => setExpanded(!expanded));
+
+	return (
+		<button
+			className={"btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fw-semibold text-white"
+				+ (expanded ? ' expanded' : '')}
+			onClick={decoratedOnClick}
+		>
+			{children}
+		</button>
+	);
+}
+
 function App() {
 	const [pastas, setPastas] = useState([]);
+	const [showOffcanvas, setShowOffcanvas] = useState(true);
+	const [showModal, setShowModal] = useState(false);
+
+	const subPastaClick = subPasta => {
+		console.log(subPasta.children);
+		setShowModal(true);
+	};
 
 	useEffect(() => {
 		//hljs.highlightAll();
 
+		// Carregar pastas
 		fetch("docs.json")
 			.then(response => response.json())
-			.then(data => {
-				setPastas(data);
-			});
+			.then(setPastas);
 
-		fetch("docs/cSharp/Arrays.txt")
+		/* fetch("docs/cSharp/Arrays.txt")
 			.then(response => response.text())
 			.then(data => {
 				// create a new FileReader object
@@ -26,70 +50,64 @@ function App() {
 				reader.onload = function (event) {
 					// the file contents are stored in the result property
 					var fileContents = event.target.result;
-					console.log(fileContents);
 				};
 
 				// read the contents of the file
 				reader.readAsText(new Blob([data]));
-			});
+			}); */
 	}, []);
 
 	return (
 		<div className="bg-dark h-100">
 			<nav className="navbar bg-primary">
 				<form className="container-fluid justify-content-start">
-					<button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-						aria-controls="offcanvasExample">
+					<button className="btn btn-primary" type="button" onClick={() => setShowOffcanvas(true)}>
 						<FontAwesomeIcon icon={faBars} />
 					</button>
 				</form>
 			</nav>
-			<div className="offcanvas offcanvas-start text-bg-dark show" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-				<div className="offcanvas-header">
-					<h5 className="offcanvas-title" id="offcanvasExampleLabel">Codes</h5>
-					<button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-				</div>
-				<div className="offcanvas-body">
+
+			<Offcanvas className="text-bg-dark" show={showOffcanvas} onHide={() => setShowOffcanvas(false)}>
+				<Offcanvas.Header closeButton closeVariant="white">
+					<Offcanvas.Title>Codes</Offcanvas.Title>
+				</Offcanvas.Header>
+				<Offcanvas.Body>
 					<ul className="list-unstyled ps-0">
-						<li className="mb-1">
-							<button className="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fw-semibold text-white" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-								Home
-							</button>
-							<div className="collapse show" id="home-collapse">
-								<ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Overview</a></li>
-									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Updates</a></li>
-									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Reports</a></li>
-								</ul>
-							</div>
-						</li>
-						<li className="mb-1">
-							<button className="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fw-semibold text-white" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-								Dashboard
-							</button>
-							<div className="collapse" id="dashboard-collapse">
-								<ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Overview</a></li>
-									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Weekly</a></li>
-									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Monthly</a></li>
-									<li><a href="#" className="link-light d-inline-flex text-decoration-none rounded">Annually</a></li>
-								</ul>
-							</div>
-						</li>
+						{pastas.map(pasta => <li className="mb-1" key={pasta.id}>
+							<Accordion>
+								<CustomToggle eventKey={pasta.id}>
+									{pasta.name || pasta.id}
+								</CustomToggle>
+								<Accordion.Collapse eventKey={pasta.id}>
+									<ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+										{pasta.children.map(subPasta => <li key={subPasta.name}>
+											<a href="#" className="link-light d-inline-flex text-decoration-none rounded" onClick={() => subPastaClick(subPasta)}>
+												{subPasta.name}
+											</a>
+										</li>)}
+									</ul>
+								</Accordion.Collapse>
+							</Accordion>
+						</li>)}
 					</ul>
-				</div>
-			</div>
+				</Offcanvas.Body>
+			</Offcanvas>
+
+			<Modal show={showModal} onHide={() => setShowModal(false)}>
+				<Modal.Header closeButton>
+					<Modal.Title>Meu Modal</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<p>Aqui vai o conteúdo do seu modal.</p>
+				</Modal.Body>
+			</Modal>
 			{/* <h1>Arrays</h1>
 
       <strong>Atribuição</strong>
       <pre>
         <code class="language-csharp" id="cod-atribuicao"></code>
       </pre> */}
-			<ul>
-				{pastas.map(pasta => <li key={pasta.id}>
-					<a>{pasta.name || pasta.id}</a>
-				</li>)}
-			</ul>
+
 
 			{/* <br />
       <br />
