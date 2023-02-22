@@ -2,10 +2,21 @@
   {
     "id": "cSharp",
     "name": "c#",
-    "children": []
+    "children": [
+      {
+        "name": "Básico",
+        "children": ["Arrays"]
+      },
+      { "name": "Bibliotecas" },
+      { "name": "Frameworks" }
+    ]
   },
   {
     "id": "JavaScript",
-    "children": []
+    "children": [
+      { "name": "Básico" },
+      { "name": "Bibliotecas" },
+      { "name": "Frameworks" }
+    ]
   }
 ]

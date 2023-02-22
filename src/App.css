@@ -11,10 +11,10 @@
   transform-origin: .5em 50%;
 }
 
-.btn-toggle[aria-expanded="true"] {
+.btn-toggle.expanded {
   color: rgba(0, 0, 0, .85);
 }
-.btn-toggle[aria-expanded="true"]::before {
+.btn-toggle.expanded::before {
   transform: rotate(90deg);
 }
 
