@@ -1,71 +1,95 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Modal from 'react-bootstrap/Modal';
+import Navbar from 'react-bootstrap/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import hljs from 'highlight.js';
 import './App.css';
+
+const CodeBlock = ({ language, code }) => {
+  const codeRef = useRef(null);
+
+  useEffect(() => hljs.highlightElement(codeRef.current), [code]);
+
+  return (
+    <pre>
+      <code ref={codeRef} className={`${language} bg-dark text-white`}>
+        {code}
+      </code>
+    </pre>
+  );
+};
 
 function CustomToggle({ children, eventKey }) {
 	const [expanded, setExpanded] = useState(false);
 	const decoratedOnClick = useAccordionButton(eventKey, () => setExpanded(!expanded));
 
 	return (
-		<button
-			className={"btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fw-semibold text-white"
-				+ (expanded ? ' expanded' : '')}
-			onClick={decoratedOnClick}
+		<Button variant="none" className={"btn-toggle d-inline-flex align-items-center rounded border-0 collapsed fw-semibold text-white"
+			+ (expanded ? ' expanded' : '')} onClick={decoratedOnClick}
 		>
 			{children}
-		</button>
+		</Button>
 	);
 }
 
 function App() {
+	const [conteudo, setConteudo] = useState();
 	const [pastas, setPastas] = useState([]);
+	const [pastaSelecionada, setPastaSelecionada] = useState({});
 	const [showOffcanvas, setShowOffcanvas] = useState(true);
 	const [showModal, setShowModal] = useState(false);
 
-	const subPastaClick = subPasta => {
-		console.log(subPasta.children);
+	const arquivoClick = e => {
+		setShowModal(false);
+		setShowOffcanvas(false);
+
+		fetch(`docs/${pastaSelecionada.lang.id}/${pastaSelecionada.name}/${e.target.innerText}.txt`)
+			.then(response => response.text())
+			.then(data => {
+				let reader = new FileReader();
+				reader.onload = e => setConteudo(e.target.result);
+				reader.readAsText(new Blob([data]));
+			});
+	};
+
+	const subPastaClick = (pasta, subPasta) => {
+		setPastaSelecionada({
+			lang: pasta,
+			...subPasta
+		});
 		setShowModal(true);
 	};
 
 	useEffect(() => {
-		//hljs.highlightAll();
-
 		// Carregar pastas
 		fetch("docs.json")
 			.then(response => response.json())
-			.then(setPastas);
-
-		/* fetch("docs/cSharp/Arrays.txt")
-			.then(response => response.text())
-			.then(data => {
-				// create a new FileReader object
-				var reader = new FileReader();
-
-				// define a function to handle the file data once it's loaded
-				reader.onload = function (event) {
-					// the file contents are stored in the result property
-					var fileContents = event.target.result;
-				};
-
-				// read the contents of the file
-				reader.readAsText(new Blob([data]));
-			}); */
+			.then(dados => setPastas(dados.map(x => {
+				x.name = x.name || x.id;
+				return x;
+			})));
 	}, []);
 
 	return (
-		<div className="bg-dark h-100">
-			<nav className="navbar bg-primary">
-				<form className="container-fluid justify-content-start">
-					<button className="btn btn-primary" type="button" onClick={() => setShowOffcanvas(true)}>
+		<div className="bg-dark min-vh-100">
+			<Navbar bg="primary">
+    	  <Container fluid>
+					<Button onClick={() => setShowOffcanvas(true)}>
 						<FontAwesomeIcon icon={faBars} />
-					</button>
-				</form>
-			</nav>
+					</Button>
+    	  </Container>
+    	</Navbar>
+
+			<Container fluid>
+				<CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo} />
+			</Container>
 
 			<Offcanvas className="text-bg-dark" show={showOffcanvas} onHide={() => setShowOffcanvas(false)}>
 				<Offcanvas.Header closeButton closeVariant="white">
@@ -76,12 +100,14 @@ function App() {
 						{pastas.map(pasta => <li className="mb-1" key={pasta.id}>
 							<Accordion>
 								<CustomToggle eventKey={pasta.id}>
-									{pasta.name || pasta.id}
+									{pasta.name}
 								</CustomToggle>
 								<Accordion.Collapse eventKey={pasta.id}>
 									<ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 										{pasta.children.map(subPasta => <li key={subPasta.name}>
-											<a href="#" className="link-light d-inline-flex text-decoration-none rounded" onClick={() => subPastaClick(subPasta)}>
+											<a href="#" className="link-light d-inline-flex text-decoration-none rounded"
+												onClick={() => subPastaClick(pasta, subPasta)}
+											>
 												{subPasta.name}
 											</a>
 										</li>)}
@@ -95,77 +121,16 @@ function App() {
 
 			<Modal show={showModal} onHide={() => setShowModal(false)}>
 				<Modal.Header closeButton>
-					<Modal.Title>Meu Modal</Modal.Title>
+					<Modal.Title>{`${pastaSelecionada.lang?.name} - ${pastaSelecionada.name}`}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<p>Aqui vai o conteúdo do seu modal.</p>
+					<ListGroup>
+						{pastaSelecionada.children?.map(arquivo => <ListGroup.Item action key={arquivo} onClick={arquivoClick}>
+							{arquivo}
+						</ListGroup.Item>)}
+    			</ListGroup>
 				</Modal.Body>
 			</Modal>
-			{/* <h1>Arrays</h1>
-
-      <strong>Atribuição</strong>
-      <pre>
-        <code class="language-csharp" id="cod-atribuicao"></code>
-      </pre> */}
-
-
-			{/* <br />
-      <br />
-      <strong>Propriedades</strong>
-      <br />
-
-      <code>
-        <span style="color: rgb(13, 103, 199)">int tamanho = matriz.Length;</span>
-        <span style="color: green">// Obtém a quantidade de itens da array</span>
-      </code>
-
-      <h2>MÉTODOS</h2>
-
-/// <summary>Copia um intervalo de uma Array para outra Array</summary>
-///
-      <param name="sourceArray">O Array que contém os dados a serem copiados</param>
-///
-      <param name="sourceIndex">Um inteiro de 64 bits que representa o índice no sourceArray no qual a cópia é iniciada
-      </param>
-///
-      <param name="destinationArray">O Array que recebe os dados</param>
-///
-      <param name="destinationIndex">Um inteiro de 64 bits que representa o índice no destinationArray no qual o
-        armazenamento é iniciado</param>
-///
-      <param name="length">Um inteiro de 64 bits que representa o número de elementos a se copiar. O inteiro deve estar
-        entre zero e MaxValue, inclusive</param>
-      Array.Copy(sourceArray, destinationArray, length); // Inicia por padrão no começo de cada array
-      Array.Copy(sourceArray, sourceIndex, destinationArray, destinationIndex, length);
-
-/// <summary>Faz um filtro na Array retornando uma nova Array com apenas os elementos que cumprem a condição
-      </summary>
-///
-      <param name="array">O Array a ser procurado</param>
-///
-      <param name="match">O Predicate
-        T(adicionar maior menor aqui) que define as condições dos elementos a serem pesquisados</param>
-/// <returns>Um Array que contém todos os elementos que correspondem às condições definidas pelo predicado
-        especificado, se encontrado; caso contrário, um Array vazio</returns>
-      int[] matriz = Array.FindAll(array, match);
-
-/// <summary>Obtém o índice da primeira ocorrência de um determinado item em uma array</summary>
-///
-      <param name="array">O Array a ser buscado o índice</param>
-///
-      <param name="value">Item cujo índice será buscado</param>
-///
-      <param name="startIndex">Índice inicial da busca</param>
-///
-      <param name="count">Número de itens a serem comparados com a busca a partir do startIndex</param>
-/// <returns>Índice do item passado</returns>
-      int indice = Array.IndexOf(array, value); // Pesquisa por toda array até encontrar
-      int indice = Array.IndexOf(array, value, startIndex); // Pesquisa do índice passado até o final da array
-      int indice = Array.IndexOf(array, value, startIndex, count);
-
-/// <summary>Junta uma array em uma string separando os valores por: ','</summary>
-/// <returns>String com a junção</returns>
-      string String = string.Join("','", matriz); */}
 		</div>
 	);
 }
