@@ -1,14 +1,19 @@
 [
   {
     "id": "cSharp",
+    "fileExtension": "cs",
     "name": "c#",
     "children": [
       {
         "name": "Básico",
-        "children": ["Arrays"]
+        "children": [
+          "Arrays", "Árvores Binárias", "Data e Tempo", "Enumeradores", "Estrutura",
+          "Números - Matemática", "Objetos", "Predicado - Condição", "Strings", "Tipos", "Tuplas"
+        ]
       },
       { "name": "Bibliotecas" },
-      { "name": "Frameworks" }
+      { "name": "Frameworks" },
+      { "name": "Tipo de Dados" }
     ]
   },
   {

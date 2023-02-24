@@ -40,6 +40,7 @@ function CustomToggle({ children, eventKey }) {
 }
 
 function App() {
+	const [arquivoSelecionado, setArquivoSelecionado] = useState();
 	const [conteudo, setConteudo] = useState();
 	const [pastas, setPastas] = useState([]);
 	const [pastaSelecionada, setPastaSelecionada] = useState({});
@@ -49,14 +50,7 @@ function App() {
 	const arquivoClick = e => {
 		setShowModal(false);
 		setShowOffcanvas(false);
-
-		fetch(`docs/${pastaSelecionada.lang.id}/${pastaSelecionada.name}/${e.target.innerText}.txt`)
-			.then(response => response.text())
-			.then(data => {
-				let reader = new FileReader();
-				reader.onload = e => setConteudo(e.target.result);
-				reader.readAsText(new Blob([data]));
-			});
+		setArquivoSelecionado(e.target.innerText);
 	};
 
 	const subPastaClick = (pasta, subPasta) => {
@@ -77,6 +71,20 @@ function App() {
 			})));
 	}, []);
 
+	// Fetch no arquivo quando a seleção de arquivo for alterada
+	useEffect(() => {
+		if (!pastaSelecionada.lang)
+			return;
+
+		fetch(`docs/${pastaSelecionada.lang.id}/${pastaSelecionada.name}/${arquivoSelecionado}.${pastaSelecionada.lang.fileExtension}`)
+			.then(response => response.text())
+			.then(data => {
+				let reader = new FileReader();
+				reader.onload = e => setConteudo(e.target.result);
+				reader.readAsText(new Blob([data]));
+			});
+	}, [arquivoSelecionado]);
+
 	return (
 		<div className="bg-dark min-vh-100">
 			<Navbar bg="primary">
@@ -88,6 +96,9 @@ function App() {
     	</Navbar>
 
 			<Container fluid>
+				<h2 className="text-white ms-3 mt-3">
+					{arquivoSelecionado}
+				</h2>
 				<CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo} />
 			</Container>
 
