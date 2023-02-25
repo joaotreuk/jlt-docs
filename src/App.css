@@ -23,7 +23,13 @@
   margin-top: .125rem;
   margin-left: 1.25rem;
 }
-.btn-toggle-nav a:hover,
-.btn-toggle-nav a:focus {
+
+.btn-toggle-nav a:not(.trigger-file):hover,
+.btn-toggle-nav a:not(.trigger-file):focus {
   background-color: #0d6efd;
+}
+
+.btn-toggle-nav a.trigger-file:hover,
+.btn-toggle-nav a.trigger-file:focus {
+  background-color: #198754;
 }

@@ -54,6 +54,12 @@ function App() {
 	};
 
 	const subPastaClick = (pasta, subPasta) => {
+		// Se for um arquivo abre
+		if (subPasta.file) {
+			window.open(`docs/${pasta.id}/${subPasta.file}`, '_blank');
+			return;
+		}
+
 		setPastaSelecionada({
 			lang: pasta,
 			...subPasta
@@ -116,7 +122,8 @@ function App() {
 								<Accordion.Collapse eventKey={pasta.id}>
 									<ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 										{pasta.children.map(subPasta => <li key={subPasta.name}>
-											<a href="#" className="link-light d-inline-flex text-decoration-none rounded"
+											<a href="#"
+												className={`link-light d-inline-flex text-decoration-none rounded${(subPasta.file ? ' trigger-file' : '')}`}
 												onClick={() => subPastaClick(pasta, subPasta)}
 											>
 												{subPasta.name}
