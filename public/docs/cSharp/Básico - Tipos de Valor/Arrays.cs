@@ -1,17 +1,10 @@
-// Declarar uma array com um tamanho específico
-int[] matriz = new int[5];
+// Declaração / Atribuição
+int[] matriz = new int[5]; // Declarar uma array com um tamanho específico
+int[] matriz = {1, 2, 3}; // Declarar uma array com seus valores
+string[] matriz = new string[] {"A", "BB", "CCC"}; // Setar um novo valor para uma array
 
-// Declarar uma array com seus valores
-int[] matriz = {1, 2, 3};
-
-// Setar um novo valor para uma array
-string[] matriz = new string[] {"A", "BB", "CCC"};
-
-
-/* -------------------- PROPRIEDADES -------------------- */
-
-// Tamanho da array
-int tamanho = matriz.Length;
+// Propriedades
+int tamanho = matriz.Length; // Tamanho da array
 
 
 /* -------------------- MÉTODOS -------------------- */

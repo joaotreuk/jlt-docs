@@ -5,15 +5,19 @@
     "name": "c#",
     "children": [
       {
-        "name": "Básico",
+        "name": "Básico - Tipos de Valor",
         "children": [
-          "Arrays", "Árvores Binárias", "Data e Tempo", "Enumeradores", "Estrutura",
-          "Números - Matemática", "Objetos", "Predicado - Condição", "Strings", "Tipos", "Tuplas"
+          "Arrays", "Árvores Binárias", "Data", "Enumeradores", "Estruturas", "Números - Matemática", "Predicado - Função de Condição",
+          "Strings", "Tempo - Período", "Tipos", "Tipos Anônimos", "Tuplas"
         ]
+      },
+      {
+        "name": "Básico - Tipos de Referência",
+        "children": ["Classes", "Interfaces"]
       },
       { "name": "Bibliotecas" },
       { "name": "Frameworks" },
-      { "name": "Tipo de Dados" }
+      { "name": "Tipo de Dados", "file": "data-types.xlsx" }
     ]
   },
   {
