@@ -7,23 +7,25 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Modal from 'react-bootstrap/Modal';
 import Navbar from 'react-bootstrap/Navbar';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import hljs from 'highlight.js';
 import './App.css';
 
 const CodeBlock = ({ language, code }) => {
-  const codeRef = useRef(null);
+	const codeRef = useRef(null);
 
-  useEffect(() => hljs.highlightElement(codeRef.current), [code]);
-
-  return (
-    <pre>
-      <code ref={codeRef} className={`${language} bg-dark text-white`}>
-        {code}
-      </code>
-    </pre>
-  );
+	useEffect(() => hljs.highlightElement(codeRef.current), [code]);
+	
+	return (
+		<pre>
+			<code ref={codeRef} className={`${language} bg-dark text-white`}>
+				{code}
+			</code>
+		</pre>
+	);
 };
 
 function CustomToggle({ children, eventKey }) {
@@ -47,10 +49,49 @@ function App() {
 	const [showOffcanvas, setShowOffcanvas] = useState(true);
 	const [showModal, setShowModal] = useState(false);
 
-	const arquivoClick = e => {
+	const arquivoClick = arquivo => {
 		setShowModal(false);
 		setShowOffcanvas(false);
-		setArquivoSelecionado(e.target.innerText);
+		setArquivoSelecionado(arquivo);
+	};
+
+	const fetchConteudo = async () => {
+		let itens,
+			dados = [],
+			pastaPai;
+
+		if (arquivoSelecionado.children.length > 1) {
+			itens = arquivoSelecionado.children;
+			pastaPai = arquivoSelecionado.name + '/';
+		} else {
+			itens = [arquivoSelecionado.name];
+			pastaPai = '';
+		}
+
+		for (const item of itens) {
+			const caminhoArquivo = `docs/${pastaSelecionada.lang.id}/${pastaSelecionada.name}/${pastaPai}${item}`
+				+ `.${pastaSelecionada.lang.fileExtension}`;
+			const retorno = await (await fetch(caminhoArquivo)).text();
+			dados.push(await lerArquivo(retorno));
+		}
+
+		setConteudo(dados);
+	};
+
+	const lerArquivo = arquivo => {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader();
+
+			reader.onload = () => {
+				resolve(reader.result);
+			};
+
+			reader.onerror = () => {
+				reject(reader.error);
+			};
+
+			reader.readAsText(new Blob([arquivo]));
+		});
 	};
 
 	const subPastaClick = (pasta, subPasta) => {
@@ -82,30 +123,29 @@ function App() {
 		if (!pastaSelecionada.lang)
 			return;
 
-		fetch(`docs/${pastaSelecionada.lang.id}/${pastaSelecionada.name}/${arquivoSelecionado}.${pastaSelecionada.lang.fileExtension}`)
-			.then(response => response.text())
-			.then(data => {
-				let reader = new FileReader();
-				reader.onload = e => setConteudo(e.target.result);
-				reader.readAsText(new Blob([data]));
-			});
+		fetchConteudo();
 	}, [arquivoSelecionado]);
-
+	
 	return (
-		<div className="bg-dark min-vh-100">
+		<div className="bg-dark min-vh-100" data-bs-theme="dark">
 			<Navbar bg="primary">
-    	  <Container fluid>
+				<Container fluid>
 					<Button onClick={() => setShowOffcanvas(true)}>
 						<FontAwesomeIcon icon={faBars} />
 					</Button>
-    	  </Container>
-    	</Navbar>
+				</Container>
+			</Navbar>
 
-			<Container fluid>
+			<Container className="bg-dark" fluid>
 				<h2 className="text-white ms-3 mt-3">
-					{arquivoSelecionado}
+					{arquivoSelecionado?.name}
 				</h2>
-				<CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo} />
+				{conteudo?.length === 1 && <CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo[0]} />}
+				{conteudo?.length > 1 && <Tabs className="mt-3" defaultActiveKey={arquivoSelecionado.children[0]}>
+					{arquivoSelecionado.children.map((item, i) => <Tab eventKey={item} className="text-light" key={item} title={item}>
+						<CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo[i]} />
+					</Tab>)}
+				</Tabs>}
 			</Container>
 
 			<Offcanvas className="text-bg-dark" show={showOffcanvas} onHide={() => setShowOffcanvas(false)}>
@@ -143,10 +183,15 @@ function App() {
 				</Modal.Header>
 				<Modal.Body>
 					<ListGroup>
-						{pastaSelecionada.children?.map(arquivo => <ListGroup.Item action key={arquivo} onClick={arquivoClick}>
-							{arquivo}
-						</ListGroup.Item>)}
-    			</ListGroup>
+						{pastaSelecionada.children?.map(arquivo => {
+							if (!arquivo.name)
+								arquivo = { name: arquivo, children: [arquivo] };
+
+							return <ListGroup.Item action key={arquivo.name} onClick={() => arquivoClick(arquivo)}>
+								{arquivo.name}
+							</ListGroup.Item>;
+						})}
+					</ListGroup>
 				</Modal.Body>
 			</Modal>
 		</div>

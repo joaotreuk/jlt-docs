@@ -28,8 +28,9 @@ string formatado = string.Format("{0:0,0.000}", numero); // Formatar um número,
 string formatado = string.Format("{0:d/M/yyyy HH:mm:ss}", minhaData); // Formatar um campo de data
 string texto = string.Format("{0} - {1}", variavel, variavel2); // Concatenando variáveis em uma string
 
-// Verificar se uma string contém uma sub string
-bool contem = texto.Contains("Joã");
+// Verificações
+bool contem = texto.Contains("Joã"); // Verificar se uma string contém uma sub string
+bool vazio = string.IsNullOrEmpty(texto); // Verificar se uma string é nula ou vazia
 
 // Obter o índice da primeira aparição de um caracter na string
 int indice = texto.IndexOf('.');
