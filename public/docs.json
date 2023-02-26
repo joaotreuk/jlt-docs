@@ -5,17 +5,39 @@
     "name": "c#",
     "children": [
       {
+        "name": "Básico",
+        "children": ["Comandos Essenciais"]
+      },
+      {
         "name": "Básico - Tipos de Valor",
         "children": [
-          "Arrays", "Árvores Binárias", "Data", "Enumeradores", "Estruturas", "Números - Matemática", "Predicado - Função de Condição",
-          "Strings", "Tempo - Período", "Tipos", "Tipos Anônimos", "Tuplas"
+          "Arrays", "Árvores Binárias", "Converter Tipos", "Data", "Enumeradores", "Estruturas", "Números - Matemática",
+          "Predicado - Função de Condição", "Strings", "Tempo - Período", "Tipos", "Tipos Anônimos", "Tuplas"
         ]
       },
       {
         "name": "Básico - Tipos de Referência",
-        "children": ["Classes", "Interfaces"]
+        "children": ["Classes", "Classes Parciais", "Interfaces"]
       },
-      { "name": "Bibliotecas" },
+      {
+        "name": "Bibliotecas - Padrão",
+        "children": [
+          "Caminhos e Informações de Aplicativos Web",
+          "Codificação", "Configurações da Aplicação",
+          { "name": "Coleções Genéricas", "children": ["Dicionários", "Enumeradores", "Listas"] },
+          "Cultura e Capitalização de Texto",
+          "Diagnósticos da Aplicação",
+          "Enviando E-mails",
+          "Linq - Em Fonte de Dados",
+          "Linq - Em Variáveis de Tempo de Execução",
+          "Segurança - Entidade de Segurança",
+          "Segurança - Identidade de Usuário",
+          "Segurança - Reivindicações - Entidade de Segurança de declarações",
+          "Serialização de JSON",
+          "Tarefas e Métodos Assíncronos",
+          "URI - Manipulador de Arquivos"
+        ]
+      },
       { "name": "Frameworks" },
       { "name": "Tipo de Dados", "file": "data-types.xlsx" }
     ]
