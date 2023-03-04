@@ -23,17 +23,28 @@
         "name": "Bibliotecas - Padrão",
         "children": [
           "Caminhos e Informações de Aplicativos Web",
+          {
+            "name": "Caminhos, Gerenciamento de Arquivos e Fluxo de Dados",
+            "children": ["Caminhos", "Fluxo na Memória RAM", "Gerenciamento de Arquivos"]
+          },
           "Codificação", "Configurações da Aplicação",
           { "name": "Coleções Genéricas", "children": ["Dicionários", "Enumeradores", "Listas"] },
           "Cultura e Capitalização de Texto",
           "Diagnósticos da Aplicação",
           "Enviando E-mails",
-          "Linq - Em Fonte de Dados",
-          "Linq - Em Variáveis de Tempo de Execução",
-          "Segurança - Entidade de Segurança",
-          "Segurança - Identidade de Usuário",
-          "Segurança - Reivindicações - Entidade de Segurança de declarações",
+          { "name": "Linq", "children": ["Em Fonte de Dados", "Em Variáveis de Tempo de Execução"] },
+          {
+            "name": "Segurança",
+            "children": ["Entidade de Segurança", "Identidade de Usuário", "Reivindicações - Entidade de Segurança de declarações"]
+          },
           "Serialização de JSON",
+          {
+            "name": "SQL Server",
+            "children": [
+              "Comandos", "Conexão", "Data Table and SqlDataAdapter", "Essencial e Outros", "Leitor de Dados",
+              "Parâmetros de Consulta", "Transações"
+            ]
+          },
           "Tarefas e Métodos Assíncronos",
           "URI - Manipulador de Arquivos"
         ]
