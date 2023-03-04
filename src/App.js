@@ -48,6 +48,7 @@ function App() {
 	const [pastaSelecionada, setPastaSelecionada] = useState({});
 	const [showOffcanvas, setShowOffcanvas] = useState(true);
 	const [showModal, setShowModal] = useState(false);
+	const [tabsActiveKey, setTabsActiveKey] = useState();
 
 	const arquivoClick = arquivo => {
 		setShowModal(false);
@@ -126,6 +127,12 @@ function App() {
 		fetchConteudo();
 	}, [arquivoSelecionado]);
 	
+	useEffect(() => {
+		if (arquivoSelecionado?.children.length > 0) {
+			setTabsActiveKey(arquivoSelecionado.children[0]);
+		}
+	}, [arquivoSelecionado?.children]);
+
 	return (
 		<div className="bg-dark min-vh-100" data-bs-theme="dark">
 			<Navbar bg="primary">
@@ -141,11 +148,13 @@ function App() {
 					{arquivoSelecionado?.name}
 				</h2>
 				{conteudo?.length === 1 && <CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo[0]} />}
-				{conteudo?.length > 1 && <Tabs className="mt-3" defaultActiveKey={arquivoSelecionado.children[0]}>
-					{arquivoSelecionado.children.map((item, i) => <Tab eventKey={item} className="text-light" key={item} title={item}>
-						<CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo[i]} />
-					</Tab>)}
-				</Tabs>}
+				{conteudo?.length > 1 && (
+					<Tabs className="mt-3" activeKey={tabsActiveKey} onSelect={key => setTabsActiveKey(key)}>
+						{arquivoSelecionado.children.map((item, i) => <Tab eventKey={item} className="text-light" key={item} title={item}>
+							<CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo[i]} />
+						</Tab>)}
+					</Tabs>
+				)}
 			</Container>
 
 			<Offcanvas className="text-bg-dark" show={showOffcanvas} onHide={() => setShowOffcanvas(false)}>
