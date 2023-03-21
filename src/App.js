@@ -50,18 +50,21 @@ function App() {
 	const [showModal, setShowModal] = useState(false);
 	const [tabsActiveKey, setTabsActiveKey] = useState();
 
+	// Ao clicar em um item da modal
 	const arquivoClick = arquivo => {
 		setShowModal(false);
 		setShowOffcanvas(false);
 		setArquivoSelecionado(arquivo);
 	};
 
+	// Obter o conteúdo que é exibido na tela
 	const fetchConteudo = async () => {
 		let itens,
 			dados = [],
 			pastaPai;
 
-		if (arquivoSelecionado.children.length > 1) {
+		// Se for um item de tipo pasta vai pegar todos os itens filhos
+		if (arquivoSelecionado.children) {
 			itens = arquivoSelecionado.children;
 			pastaPai = arquivoSelecionado.name + '/';
 		} else {
@@ -79,6 +82,7 @@ function App() {
 		setConteudo(dados);
 	};
 
+	// Ler arquivo baixado por fetch
 	const lerArquivo = arquivo => {
 		return new Promise((resolve, reject) => {
 			const reader = new FileReader();
@@ -95,6 +99,7 @@ function App() {
 		});
 	};
 
+	// Clique no sub item do menu
 	const subPastaClick = (pasta, subPasta) => {
 		// Se for um arquivo abre
 		if (subPasta.file) {
@@ -109,8 +114,8 @@ function App() {
 		setShowModal(true);
 	};
 
+	// Ao iniciar o componente ler o JSON com os dados dos arquivos de documentação
 	useEffect(() => {
-		// Carregar pastas
 		fetch("docs.json")
 			.then(response => response.json())
 			.then(dados => setPastas(dados.map(x => {
@@ -128,7 +133,7 @@ function App() {
 	}, [arquivoSelecionado]);
 	
 	useEffect(() => {
-		if (arquivoSelecionado?.children.length > 0) {
+		if (arquivoSelecionado?.children?.length > 0) {
 			setTabsActiveKey(arquivoSelecionado.children[0]);
 		}
 	}, [arquivoSelecionado?.children]);
@@ -147,14 +152,16 @@ function App() {
 				<h2 className="text-white ms-3 mt-3">
 					{arquivoSelecionado?.name}
 				</h2>
-				{conteudo?.length === 1 && <CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo[0]} />}
-				{conteudo?.length > 1 && (
-					<Tabs className="mt-3" activeKey={tabsActiveKey} onSelect={key => setTabsActiveKey(key)}>
-						{arquivoSelecionado.children.map((item, i) => <Tab eventKey={item} className="text-light" key={item} title={item}>
-							<CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo[i]} />
-						</Tab>)}
-					</Tabs>
-				)}
+				{conteudo && <>
+					{(!arquivoSelecionado.children) && <CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo[0]} />}
+					{arquivoSelecionado.children && (
+						<Tabs className="mt-3" activeKey={tabsActiveKey} onSelect={key => setTabsActiveKey(key)}>
+							{arquivoSelecionado.children.map((item, i) => <Tab eventKey={item} className="text-light" key={item} title={item}>
+								<CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo[i]} />
+							</Tab>)}
+						</Tabs>
+					)}
+				</>}
 			</Container>
 
 			<Offcanvas className="text-bg-dark" show={showOffcanvas} onHide={() => setShowOffcanvas(false)}>
@@ -194,7 +201,7 @@ function App() {
 					<ListGroup>
 						{pastaSelecionada.children?.map(arquivo => {
 							if (!arquivo.name)
-								arquivo = { name: arquivo, children: [arquivo] };
+								arquivo = { name: arquivo };
 
 							return <ListGroup.Item action key={arquivo.name} onClick={() => arquivoClick(arquivo)}>
 								{arquivo.name}
