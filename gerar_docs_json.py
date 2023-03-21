@@ -2,7 +2,7 @@ import locale
 import json
 import os
 
-# Define a localização para Português do Brasil
+# Define a localização para pt-br
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 # Obter objeto de estrutura da pasta
@@ -38,4 +38,4 @@ def get_directory_structure(pasta):
 
 # Criar o arquivo JSON de documentos
 with open("public\\docs.json", "w") as arquivo:
-  arquivo.write(json.dumps(get_directory_structure("public\\docs"), indent = 2))
+  arquivo.write(json.dumps(get_directory_structure("public\\docs")))
