@@ -119,7 +119,7 @@ function App() {
 		fetch("docs.json")
 			.then(response => response.json())
 			.then(dados => setPastas(dados.map(x => {
-				x.name = x.name || x.id;
+				x.id = x.id || x.name;
 				return x;
 			})));
 	}, []);

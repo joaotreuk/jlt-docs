@@ -22,6 +22,8 @@ def get_directory_structure(pasta):
         objeto["id"] = item
         objeto["fileExtension"] = "cs"
         objeto["name"] = "c#"
+      elif item == "JavaScript":
+        objeto["fileExtension"] = "js"
 
       estrutura.append(objeto)
     elif os.path.isfile(caminho):
