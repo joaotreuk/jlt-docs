@@ -22,14 +22,14 @@ def get_directory_structure(pasta):
         objeto["id"] = item
         objeto["fileExtension"] = "cs"
         objeto["name"] = "c#"
+      elif item == "HTML":
+        objeto["fileExtension"] = "html"
       elif item == "JavaScript":
         objeto["fileExtension"] = "js"
       elif item == "PowerShell":
         objeto["fileExtension"] = "ps1"
       elif item == "Razor":
         objeto["fileExtension"] = "cshtml"
-      elif item == "HTML":
-        objeto["fileExtension"] = "html"
 
       estrutura.append(objeto)
     elif os.path.isfile(caminho):
