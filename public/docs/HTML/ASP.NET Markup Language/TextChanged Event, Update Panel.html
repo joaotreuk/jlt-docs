@@ -1,0 +1,21 @@
+<!-- É necessário ter um script manager no topo da página para o update panel funcionar -->
+<asp:scriptmanager runat="server" EnablePartialRendering="true" />
+
+<asp:DropDownList ID="DdlExemplo" runat="server" OnTextChanged="Exemlo_Change" AutoPostBack="True">
+	<asp:ListItem Text="Exemplo" Value="001" Selected="true"></asp:ListItem>
+	<asp:ListItem Text="Exemplo" Value="002"></asp:ListItem>
+	<asp:ListItem Text="Exemplo" Value="003"></asp:ListItem>
+</asp:DropDownList>
+
+<!-- Update Panel exemplo -->
+<asp:UpdatePanel ID="UpExemplo" runat="server">
+	<ContentTemplate>
+		<select>
+			<option value="-1" selected>Selecionar...</option>
+			<asp:Literal id="LitExemplo" runat="server" Mode="PassThrough"></asp:Literal>
+		</select>
+	</ContentTemplate>
+	<Triggers>
+		<asp:AsyncPostBackTrigger ControlID="DdlExemplo" EventName="TextChanged"/>
+	</Triggers>
+</asp:UpdatePanel>

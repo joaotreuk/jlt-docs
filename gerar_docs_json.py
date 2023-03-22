@@ -17,13 +17,19 @@ def get_directory_structure(pasta):
         "children": get_directory_structure(caminho)
       }
 
-      # Definições c#
+      # Definições de cada linguagem
       if item == "cSharp":
         objeto["id"] = item
         objeto["fileExtension"] = "cs"
         objeto["name"] = "c#"
       elif item == "JavaScript":
         objeto["fileExtension"] = "js"
+      elif item == "PowerShell":
+        objeto["fileExtension"] = "ps1"
+      elif item == "Razor":
+        objeto["fileExtension"] = "cshtml"
+      elif item == "HTML":
+        objeto["fileExtension"] = "html"
 
       estrutura.append(objeto)
     elif os.path.isfile(caminho):
@@ -31,7 +37,7 @@ def get_directory_structure(pasta):
       partesNome = os.path.splitext(item)
       if partesNome[1] == ".xlsx":
         estrutura.append({
-          "name": "Tipo de Dados",
+          "name": partesNome[0],
           "file": item
         })
       else:

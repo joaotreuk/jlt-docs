@@ -1,0 +1,11 @@
+@{
+    string minhaVariavel = ViewData["QualquerInformacao"];
+}
+
+@* Escrevendo variáveis no front-end *@
+<label>@minhaVariavel</label>
+<label>@ViewBag.QualquerInformacao</label> @* Informações passadas pela ViewBag são automaticamente convertidas para string *@
+
+<script>
+    console.log('@Html.Raw(@Exemplo)') // Converte para UTF-8 uma string
+</script>

@@ -153,7 +153,7 @@ function App() {
 					{arquivoSelecionado?.name}
 				</h2>
 				{conteudo && <>
-					{(!arquivoSelecionado.children) && <CodeBlock language={pastaSelecionada.lang?.id || 'javascript'} code={conteudo[0]} />}
+					{(!arquivoSelecionado.children) && <CodeBlock language={pastaSelecionada.lang?.id} code={conteudo[0]} />}
 					{arquivoSelecionado.children && (
 						<Tabs className="mt-3" activeKey={tabsActiveKey} onSelect={key => setTabsActiveKey(key)}>
 							{arquivoSelecionado.children.map((item, i) => <Tab eventKey={item} className="text-light" key={item} title={item}>

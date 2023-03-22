@@ -1,0 +1,35 @@
+<!-- Layout -->
+<!-- Carregar o corpo principal da página no layout -->
+@RenderBody()
+
+<!-- Carregar um pedaço opcional da página no layout -->
+@RenderSection("Scripts", required: false)
+
+<!-- View -->
+@{
+    // Definindo o layout usado pela página, se não estiver definido então pegara o layout padrão da aplicação
+    Layout = null; // Define para a página não usar nenhum layout
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Pega o layout pelo seu caminho
+}
+
+<!-- Para definir o layout padrão da aplicação, devesse definir o caminho para o mesmo no arquivo "_ViewStart.cshtml" na pasta Views -->
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Renderizando um pedaço opcional do layout -->
+@section scripts {
+    Conteudo
+}
+
+<!-- Renderizando pedaços de marcação na view -->
+@await Html.PartialAsync("../Account/Cabecalho.cshtml")
+@Html.Partial("Cabecalho")
+@{ Html.RenderPartial("Cabecalho"); }
+@{ await Html.RenderPartialAsync("Cabecalho"); }
+@RenderPage("Cabecalho.cshtml")
+public ActionResult Cabecalho() { return View(); } <!-- Método de geração da view -->
+
+<!-- Escapando caracteres -->
+@("@")
+@@
