@@ -1,0 +1,1 @@
+// Modernizr tells you what HTML, CSS and JavaScript features the user’s browser has to offer.

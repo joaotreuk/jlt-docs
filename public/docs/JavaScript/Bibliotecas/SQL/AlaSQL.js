@@ -1,0 +1,1 @@
+// AlaSQL applies SQL opperations to JavaScript arrays and objects therefore the library can best be described as a JavaScript SQL database.
