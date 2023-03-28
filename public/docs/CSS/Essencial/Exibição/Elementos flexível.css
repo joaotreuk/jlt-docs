@@ -1,0 +1,71 @@
+.elementoPai {
+    display: flex;
+
+    /* Direção do eixo principal do elemento */
+    flex-direction: row; /* Define o eixo principal como linha, ou seja seus filhos serão colunas */
+    flex-direction: column; /* Define o eixo principal como coluna, ou seja seus filhos serão linhas */
+    flex-direction: column-reverse; /* Tem os mesmos efeitos, porém invertem a ordem dos filhos */
+    flex-direction: row-reverse; 
+
+    /* Se os filhos quebram linha caso excedam o espaço ou não */
+    flex-wrap: wrap; /* Faz os filhos quebrarem linha caso excedam o espaço do elemento */
+    flex-wrap: nowrap; /* Os filhos não quebram linha caso excedam o espaço do elemento */
+    flex-wrap: wrap-reverse; /* Igual o 'wrap', mas os filhos são organizados ao contrário */
+
+    /* Combinação dos atributos 'flex-direction' e 'flex-wrap', sendo o primeiro parâmetro o direction e o segundo o wrap */
+    flex-flow: row wrap;
+
+    /* Posição dos filhos em relação ao eixo principal do elemento, ou seja o eixo definido no 'flex-direction' */
+    justify-content: stretch; /* Padrão, faz os filhos se esticarem pelo eixo inteiro*/
+    justify-content: flex-start; /* Faz os filhos ficarem no início do eixo */
+    justify-content: flex-end; /* Faz os filhos ficarem no final do eixo */
+    justify-content: center; /* Faz os filhos ficarem no centro do eixo */
+    justify-content: space-between; /* Faz os filhos ficarem distribuidos entre o eixo, com espaços iguais entre eles */
+    justify-content: space-around; /* Igual o 'space-between', porém também distribuí o espaço entre as laterais do eixo */
+
+    /* Posição dos filhos em relação ao eixo transversal do elemento, ou seja o eixo diferente do definido no 'flex-direction' */
+    align-items: stretch; /* Padrão, faz os filhos se esticarem pelo eixo inteiro*/
+    align-items: flex-start; /* Faz os filhos ficarem no início do eixo */
+    align-items: flex-end; /* Faz os filhos ficarem no final do eixo */
+    align-items: center; /* Faz os filhos ficarem no centro do eixo */
+
+    /* Posição dos filhos quando quebrados em mais de uma linha/coluna pelo 'flex-wrap' em relação ao eixo transversal do elemento, 
+    Assim o 'align-items' apenas alinhará os filhos em relação a linha/coluna em que estão, com este alinhando entre as linhas/colunas */
+    align-content: stretch; /* Padrão, faz os filhos se esticarem pelo eixo inteiro */
+    align-content: flex-start; /* Faz os filhos ficarem no início do eixo */
+    align-content: flex-end; /* Faz os filhos ficarem no final do eixo */
+    align-content: center; /* Faz os filhos ficarem no centro do eixo */
+    align-content: space-between; /* Faz os filhos ficarem distribuidos entre o eixo, com espaços iguais entre eles */
+    align-content: space-around; /* Igual o 'space-between', porém também distribuí o espaço entre as laterais do eixo */
+}
+
+.elementoPai .filho {
+    /* Define o tamanho mínimo do elemento em relação ao tamanho do pai flex */
+    flex-basis: auto; /* Deixa como mínimo o seu tamanho natural */
+    flex-basis: 100px; /* Define o tamanho como um valor em pixels */
+
+    /* Define se o elemento pode se crescer para completar o tamanho do pai flex
+    Se mais de um elemento filho do pai tiverem esta propriedade então ambos iram crescer para completar o espaço sobrando em relação ao pai
+    Quando maior o valor desta propriedade mais o elemento cresce em relação ao seus irmãos,
+    0 fará ele não crescer */
+    flex-grow: 1;
+
+    /* O reverso do 'flex-grow', o elemento encolhe seu tamanho definido no 'flex-basis' em relação ao tamanho dos elementos irmãos
+    Quando maior o valor desta propriedade mais o elemento encolherá em relação ao seus irmãos
+    0 fará ele não encolher */
+    flex-shrink: 5;
+
+    /* Combinação dos atributos 'flex-grow', 'flex-shrink' e 'flex-basis', com os parâmetros nesta ordem respectivamente */
+    flex: 1 1 auto;
+    flex: auto; /* Equivalente a: '1 1 auto' */
+    flex: none; /* Equivalente a: '0 0 auto', ou seja totalmente inflexível */
+
+    /* Posição do elemento em relação ao eixo transversal do pai, se sobrepõe sobre o 'align-items' do pai */
+    align-self: stretch; /* Padrão, faz o elemento se esticar pelo eixo inteiro */
+    align-self: flex-start; /* Faz o elemento ficar no início do eixo */
+    align-self: flex-end; /* Faz o elemento ficar no final do eixo */
+    align-self: center; /* Faz o elemento ficar no centro do eixo */
+
+    /* Quando definido a margem de uma direção como 'auto', o elemento vai se empurar deixando o espaço extra do pai para o outro lado, irmãos subjacentes serão empurados junto */
+    margin-left: auto;
+}

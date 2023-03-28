@@ -1,0 +1,36 @@
+<button type="button" data-toggle="modal" data-target="#Modal">Chamar Modal</button>
+
+<!-- Adicionar um efeito quando a visibilidade da modal for alternada: fade -->
+<div id="Modal" class="modal" tabindex="-1" role="dialog">
+	<!-- Alinhar verticalmente a modal: modal-dialog-centered -->
+	<!-- Aplicar diferentes tamanhos para modal: modal-sm, modal-lg, modal-xl -->
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Modal Heading</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Modal body..
+			</div>
+			<!-- O footer é flex, portanto pode-se usar as classes flex do bootstrap: justify-content-center -->
+			<div class="modal-footer"> 
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$('#Modal').modal(); // Abre a modal
+	$('#Modal').modal("hide"); // Fecha a modal
+	
+	$('.modal-backdrop').addClass('Classe'); // Altera a cor do backdrop após a modal ser inicializada, adicionando uma classe com a cor
+	
+	// Evento chamado quando a modal aparecer
+	$('#Modal').on('shown.bs.modal', () => { 
+		meuElemento.focus(); // Fazer um elemento receber foco quando a modal aparecer
+	});
+</script>

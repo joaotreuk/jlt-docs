@@ -1,0 +1,90 @@
+div {
+    /* Espaço ao redor do elemento, fora das bordas */
+    margin: 25px 50px 75px 100px; /* Aplicando uma margem diferente para todos os lados de uma vez [top - right - bottom - left] */
+    margin: 25px; /* Aplica uma margem igual para todos os lados do elemento */
+    margin: auto; /* Faz o elemento ficar no centro do elemento pai, deixando margens iguais para todos lados */
+
+    /* Aplicando uma margem diferente para cada lado do elemento */
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 80px;
+}
+
+div {
+    /* Espaço ao redor do elemento, ainda assim fica dentro da borda */
+    padding: 25px 50px 75px 100px; /* Aplicando um preenchimento diferente para todos os lados de uma vez, [top - right - bottom - left] */
+    padding: 25px 50px; /* Vertical, Horizontal */
+    padding: 25px; /* Aplica um preenchimento igual para todos os lados do elemento */
+
+    /* Aplicando um preenchimento diferente para cada lado do elemento */
+    padding-top: 50px; 
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+
+    /* O preenchimento aumenta o tamanho do elemento, porém usando "box-sizing" o tamanho se mantém */
+    width: 300px;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.bordas {
+    /* Tipo de borda */
+    border-style: solid; /* Borda sólida */
+    border-style: dotted; /* Borda pontilhada */
+    border-style: dashed; /* Borda tracejada */
+    border-style: double; /* Borda dupla */
+    border-style: groove;
+    border-style: ridge;
+    border-style: inset; /* Borda com sombras para dentro */
+    border-style: outset; /* Borda com sombras para fora */
+    border-style: none; /* Sem borda */
+    border-style: hidden; /* Borda escondida */
+    border-style: dotted dashed solid double; /* Definindo um tipo de borda para cada lado [top - right - bottom - left] */
+
+    /* Tamanho da borda */
+    border-width: 25px 50px 75px 100px; /* Aplicando um tamanho diferente para todos os lados de uma vez [top - right - bottom - left] */
+    border-width: 25px; /* Aplica um tamanho igual para todos os lados */
+    border-width: thick; /* Borda grossa para todos os lados */
+    border-width: medium; /* Borda de tamanho médido para todos os lados */
+
+    /* Cor da borda */
+    border-color: red green blue yellow; /* Aplicando uma cor diferente para todos os lados de uma vez [top - right - bottom - left] */
+    border-color: red; /* Aplica uma cor igual para todos os lados */
+
+    /* É possível definir os atributos de borda separadamente para cada lado, eles se sobressaem sobre os atributos das bordas juntas */
+    border-top-style: dotted;
+    border-bottom-width: 10px;
+    border-left-color: red;
+
+    /* Combinação dos atributos 'border-width', 'border-style' e 'border-color', com os parâmetros nesta ordem respectivamente */
+    border: 5px solid red;
+    border-right: 6px solid red;
+
+    /* Nível de arredondamento da borda */
+    border-radius: 8px; /* Arredondamento igual para todas as quinas */
+    border-radius: 15px 50px 30px 5px; /* Arredondamento para cada quina [topo-esquerda, topo-direita, baixo-direita, baixo-esquerda] */
+    border-top-left-radius: 15px; /* Arredondamento do canto superior esquerdo */
+    border-top-right-radius: 15px; /* Arredondamento do canto superior direito */
+    border-bottom-right-radius: 15px; /* Arredondamento do canto inferior direito */
+    border-bottom-left-radius: 15px; /* Arredondamento do canto inferior esquerdo */
+}
+
+.corte {
+    /* Corte de imagens */
+    clip-path: circle(40%); /* Corta a imagem em formato circular */
+    clip-path: ellipse(25% 40% at 50% 50%); /* Corta a imagem em formato de elipse */
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Corta a imagem em formato poligonal */
+    clip-path: inset(5% 20% 15% 10%); /* Corta a imagem em formato retangular */
+}
+
+.sombra {
+    /* Sombreamento do elemento, [sombra horizontal, sombra vertical, Nível de borrão da sombra, cor da sombra] */
+    box-shadow: 10px 10px;
+    box-shadow: 10px 10px grey;
+    box-shadow: 10px 10px 5px grey;
+    box-shadow: 5px 5px blue, 10px 10px red, 15px 15px green; /* É possível adicionar vários sombreamentos separando eles por vírgula */
+    box-shadow: 10px 10px 50px 15px grey; /* Quarto parâmetro faz a sombra aumentar seu tamanho, ou diminuir caso seja um valor negativo */
+    box-shadow:20px 20px 50px 10px pink inset; /* "inset" faz a sombra ficar para dentro do elemento */
+}

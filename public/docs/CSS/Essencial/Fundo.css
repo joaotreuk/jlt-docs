@@ -1,0 +1,59 @@
+div {
+    /* Cor de fundo do elemento */
+    background-color: red;
+
+    /* Usando uma imagem como fundo, a imagem é repetida até preencher todo fundo */
+    background-image: url("paper.gif");
+    background-image: url(img_tree.gif), url(paper.gif); /* É possível definir mais de uma imagem de fundo */
+    background-image: linear-gradient(red, yellow, green); /* Define um fundo com uma coloração gradiente entre duas ou mais cores */
+    background-image: repeating-linear-gradient(red, yellow 20%); /* Parecido com o anterior, porém o fundo se repete várias vezes */
+    background-image: linear-gradient(to right, red , yellow); /* A coloração gradiante avança para um determinado lado */
+    background-image: linear-gradient(to bottom right, red, yellow); /* A coloração gradiante avança diagonalmente */
+    background-image: linear-gradient(180deg, red, yellow); /* Definindo um ângulo específico para a coloração gradiante avançar */
+    background-image: radial-gradient(red, yellow); /* Fundo com uma coloração gradiente que inicia no centro */
+    background-image: repeating-radial-gradient(red, yellow 10%); /* Parecido com o anterior, porém o fundo se repete várias vezes */
+    background-image: radial-gradient(circle, red, yellow); /* Coloração gradiante circular */
+    background-image: radial-gradient(closest-side at 60% 55%, red, blue); /* Definindo o tamanho e posição da coloração gradiente, [farthest-side, closest-corner, farthest-corner] */
+
+    /* Define o tipo de repetição da imagem de fundo */
+    background-repeat: repeat-x; /* Repete a imagem apenas horizontalmente */
+    background-repeat: repeat-y; /* Repete a imagem apenas verticalmente */
+    background-repeat: space; /* Repete para ambos lados porém com espaços entre as repetições */
+    background-repeat: no-repeat; /* Faz a imagem não se repetir */
+    background-repeat: no-repeat, repeat; /* Definindo a repetição quando a mais de uma imagem declarada para o fundo */
+
+    /* Definindo a posição de uma imagem de fundo que não se repete */
+    background-position: right top; /* Define a imagem para o canto superior direito, [left center, center bottom, etc.] */
+    background-position: center; /* Define a imagem no centro do fundo */
+    background-position: 25% 75%; /* Define a posição usando valores */
+    background-position: right bottom, left top; /* Definindo a posição quando a mais de uma imagem declarada para o fundo */
+
+    /* Define se uma imagem de fundo que não se repete fica fixa no fundo ou se rola junto a página */
+    background-attachment: scroll; /* Padrão, a imagem rola junto a página */
+    background-attachment: fixed; /* Deixa a imagem fixa na sua posição */
+
+    /* Combinação das propriedades 'background-color', 'background-image', 'background-repeat', 'background-attachment', 'background-position', 
+        com os parâmetros nesta ordem respectivamente */
+    background: red url("paper.png") no-repeat fixed right top;
+    background: url(img_flwr.gif) right bottom no-repeat, url(paper.gif) left top repeat;
+
+    /* Tamanho da imagem de fundo */
+    background-size: 300px 100px; /* Largura e altura */
+    background-size: 50%; /* Largura e altura com o mesmo tamanho */
+    background-size: cover; /* Faz a imagem cobrir todo o fundo */
+    background-size: 100px 80px; /* Quando a mais de uma imagem declarada para o fundo */
+
+    /* Define onde o fundo começa */
+    background-origin: padding-box; /* Padrão, o fundo começa na caixa do preenchimento */
+    background-origin: border-box; /* O fundo começa na caixa da borda */
+    background-origin: content-box; /* O fundo começa na caixa do conteúdo */
+    background-origin: content-box, padding-box; /* Definindo o início dos fundos quando a mais de uma imagem declarada para o fundo */
+
+    /* Define até onde o fundo vai */
+    background-clip: border-box; /* Padrão, o fundo termina na caixa da borda */
+    background-clip: padding-box; /* O fundo termina na caixa do preenchimento */
+    background-clip: content-box; /* O fundo termina na caixa do conteúdo */
+
+    /* Nível de opacidade do elemento, diferente da opacidade do RGBA a opacidade aqui também se aplica para os elementos filhos e textos */
+    opacity: 0.1;
+}

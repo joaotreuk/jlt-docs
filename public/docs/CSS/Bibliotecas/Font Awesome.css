@@ -1,0 +1,5 @@
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
+// Utilizando os icons
+<i class="fas fa-camera"></i>; // Cor sólida
+<i class="far fa-camera"></i>; // Cor apenas nas bordas

@@ -1,0 +1,37 @@
+<link href="Scripts/tooltipster-master/dist/css/tooltipster.bundle.css" rel="stylesheet" />
+<link href="tooltipster-follower-master/dist/css/tooltipster-follower.min.css" rel="stylesheet" />
+<link href="tooltipster-master/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" rel="stylesheet" />
+<script src="jquery.min.js"></script>
+<script src="tooltipster-master/dist/js/tooltipster.bundle.js"></script>
+<script src="tooltipster-follower-master/dist/js/tooltipster-follower.js"></script>
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+
+<label for="Input">	
+	<span>CEST</span>
+	<span class="TooltipInfo" data-tooltip-content="#tooltip_content">
+		<sup class="text-info">
+			<i class="fas fa-exclamation-circle" style="font-size:12px"></i>
+		</sup>
+	</span>
+</label>
+<div class="tooltip_templates">
+	<span id="tooltip_content">
+		<strong>Código Especificador da Substituição Tributária</strong>
+		<br /><br />Identifica a mercadoria sujeita aos regimes de 
+		<br />substituição tributária e de antecipação do 
+		<br />recolhimento do ICMS ST.
+	</span>
+</div>
+<div class="input-group mb-3">
+	<div class="input-group-prepend">
+		<span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+	</div>&nbsp;
+	<input type="text" id="Input" />
+</div>
+
+//-------------------------------------------------------------------------------------------------------------------------------------------
+
+$('.TooltipInfo').tooltipster({
+	theme: 'tooltipster-punk', plugins: ['follower']
+});

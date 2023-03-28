@@ -1,0 +1,26 @@
+<script>
+	
+// Gerar um popover para o elemento
+$(elemento).popover({
+	container: 'body', // Container do popover, é bom usar o 'body' para previnir problemas em relação a posição com o seu elemento, padrão: false
+	content: '<strong>Meu conteúdo</strong>', // Conteúdo padrão, no caso do atributo 'data-content' não ser definido
+	html: true, // Se o conteúdo do popover usa HTML ou não, padrão: false
+	placement: 'top', // Posição do popover em relação ao elemento (auto | top | bottom | left | right), padrão: 'right'
+	// Base HTML to use when creating the popover
+	// The popover's title will be injected into the .popover-header
+	// The popover's content will be injected into the .popover-body
+	// .arrow will become the popover's arrow
+	// The outermost wrapper element should have the .popover class
+	template: '<div class="popover border-primary"><div class="arrow"></div><h3 class="popover-header bg-primary"></h3><div class="popover-body"></div></div>',
+	title: 'Título', // Título padrão, no caso do atributo HTML 'title' não ser definido
+	// Evento do elemento que chama o popover (click | hover | focus | manual), padrão: 'click'
+	// Mais de um evento pode ser passado, separando eles por um espaço, exemplo: 'click focus'
+	trigger: 'hover'
+});
+
+// Abilitar o popover para qualquer elemento que possuí o atributo 'toggle' com o valor 'popover'
+// Se o popover for definido de forma genérica assim, então o elemento deve ter as propriedades de dados necessárias para auto gerar o popover
+// Os atributos de dados passados por HTML são iguais as opções de criação do popover, exceto o título que é o próprio 'title' do HTML
+$('[data-toggle="popover"]').popover();
+
+</script>

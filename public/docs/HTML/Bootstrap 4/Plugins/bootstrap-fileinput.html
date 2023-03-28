@@ -1,0 +1,62 @@
+<script src="~/Scripts/Bootstrap FileInput/fileinput.min.js"></script>
+<script src="~/Scripts/Bootstrap FileInput/pt-BR.js"></script> Tradução para português
+<script>
+
+$('#FileFoto').fileinput({
+    showUpload: false, // Se mostra ou não o botão de upload, padrão: true
+    showCaption: false, // Se mostra ou não a barra de input com o nome do arquivo ou não, padrão: true
+    showRemove: false, // Se mostra ou não o botão de remover o arquivo, padrão: true
+    dropZoneEnabled: false, // Se mostra ou não o campo para arrastar o arquivo, padrão: true
+    allowedFileExtensions: ["jpg", "png", "gif", "ico", "svg"], // Lista com as extensões de arquivos permitidos
+    language: "pt-BR", // linguagem do componente, nessesário incluir o plugin do mesmo
+    browseLabel: 'Procurar', // Texto do botão "Browse"
+    browseIcon: '<i class="icon-file-plus mr-2"></i>', // Icon do botão "Browse"
+    uploadIcon: '<i class="icon-file-upload2 mr-2"></i>', // Icon do botão "Upload"
+    removeIcon: '<i class="icon-cross2 font-size-base mr-2"></i>', // Icon do botão "Remove"
+    previewClass: "bg-primary", // Classe do fundo do campo de arrastar arquivo
+    layoutTemplates: {
+        icon: '<i class="icon-file-check"></i>',
+        modal: '<div class="modal-dialog modal-lg" role="document">\n' +
+            '  <div class="modal-content">\n' +
+            '    <div class="modal-header align-items-center">\n' +
+            '      <h6 class="modal-title">{heading} <small><span class="kv-zoom-title"></span></small></h6>\n' +
+            '      <div class="kv-zoom-actions btn-group">{toggleheader}{fullscreen}{borderless}{close}</div>\n' +
+            '    </div>\n' +
+            '    <div class="modal-body">\n' +
+            '      <div class="floating-buttons btn-group"></div>\n' +
+            '      <div class="kv-zoom-body file-zoom-content"></div>\n' + '{prev} {next}\n' +
+            '    </div>\n' +
+            '  </div>\n' +
+            '</div>\n'
+    },
+    initialCaption: "Nenhum arquivo selecionado", // Texto da barra de input com o nome do arquivo
+    previewZoomButtonClasses: {
+        toggleheader: 'btn btn-light btn-icon btn-header-toggle btn-sm',
+        fullscreen: 'btn btn-light btn-icon btn-sm',
+        borderless: 'btn btn-light btn-icon btn-sm',
+        close: 'btn btn-light btn-icon btn-sm'
+    },
+    previewZoomButtonIcons: {
+        prev: '<i class="icon-arrow-left32"></i>',
+        next: '<i class="icon-arrow-right32"></i>',
+        toggleheader: '<i class="icon-menu-open"></i>',
+        fullscreen: '<i class="icon-screen-full"></i>',
+        borderless: '<i class="icon-alignment-unalign"></i>',
+        close: '<i class="icon-cross2 font-size-base"></i>'
+    },
+    fileActionSettings: {
+        zoomClass: '',
+        zoomIcon: '<i class="icon-zoomin3"></i>',
+        dragClass: 'p-2',
+        dragIcon: '<i class="icon-three-bars"></i>',
+        removeClass: '',
+        removeErrorClass: 'text-danger',
+        removeIcon: '<i class="icon-bin"></i>',
+        indicatorNew: '<i class="icon-file-plus text-success"></i>',
+        indicatorSuccess: '<i class="icon-checkmark3 file-icon-large text-success"></i>',
+        indicatorError: '<i class="icon-cross2 text-danger"></i>',
+        indicatorLoading: '<i class="icon-spinner2 spinner text-muted"></i>'
+    }
+})
+
+</script>

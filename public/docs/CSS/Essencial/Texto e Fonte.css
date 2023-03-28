@@ -1,0 +1,98 @@
+.texto {
+    /* Define a cor do texto */
+    color: red;
+
+    /* Alinhamento do texto em relação ao elemento pai, [center, right, left] */
+    text-align: center;
+    text-align: justify; /* Deixa o texto justificado */
+
+    /* Define o método de justificação do alinhamento justificado */
+    text-justify: inter-word; /* Aumenta ou diminui o espaço entre palavras */
+    text-justify: inter-character; /* Aumenta ou diminui o espaço entre caracteres */
+
+    /* Define como a última linha de um texto com alinhamento justificado deve ser alinhada */
+    text-align-last: right; /* center, right, left, justify */
+
+    /* Transforma o texto */
+    text-transform: uppercase; /* Transforma todas letras para maiúsculas */
+    text-transform: lowercase; /* Transforma todas letras para minúsculas */
+    text-transform: capitalize; /* Deixa a primeira letra de cada palavra como maiúscula */
+
+    /* Decoração do texto */
+    text-decoration: overline; /* Uma linha acima do texto */
+    text-decoration: line-through; /* Uma linha através do texto */
+    text-decoration-line: underline; /* Uma linha abaixo do texto */
+    text-decoration-line: overline underline; /* É possível definir mais de uma decoração */
+    text-decoration-color: red; /* Cor da decoração */
+    text-decoration-style: wavy; /* Estilo da decoração, [solid, double, dotted, dashed], 'wavy' para formato de onda */
+    text-decoration: underline overline wavy blue; /* Abreviação das propriedades */
+
+    /* Espaçamento do texto */
+    text-indent: 50px; /* Espaçamento a esquerda para primeira linha de cada parágrafo */
+    letter-spacing: -3px; /* Espaçamento entre cada letra do texto */
+    word-spacing: -5px; /* Espaçamento entre cada palavra do texto */
+    line-height: 0.7; /* Altura de cada linha do texto */
+
+    /* Sombreamento do texto, [sombra horizontal, sombra vertical, Nível de borrão da sombra, cor da sombra] */
+    text-shadow: 2px 2px 5px red;
+    text-shadow: 0 0 3px red, 0 0 5px blue; /* É possível adicionar vários sombreamentos separando eles por vírgula */
+}
+
+.fonte {
+    /* Tamanho da fonte */
+    font-size: 16px;
+    font-size: medium; /* É possível definir para padrões pré definidos [xx-small, x-small, smaller, small, large, larger, x-large, xx-large] */
+
+    /* Fonte usada para o texto */
+    font-family: "Times New Roman"; /* Nomes de fontes com espaço devem estra entre aspas duplas */
+    font-family: Arial, sans-serif; /* Podesse definir mais de uma fonte, caso a primeira não esteja disponível o navegador usará a próxima na ordem */
+
+    /* Estilo do texto */
+    font-style: italic; /* Texto itálico */
+    font-style: oblique; /* Texto oblíquo */
+
+    /* Peso da fonte */
+    font-weight: bold; /* Negrito */
+    font-weight: bolder; /* Mais negrito */
+    font-weight: lighter; /* Mais fino */
+    font-weight: 700; /* Nível de grossura, [100, 200, 300, 400, 500, 600, 700, 800 ou 900] */
+
+    /* Variação da fonte */
+    font-variant: small-caps; /* Transforma as letras minúsculas em maiúsculas, porém elas ficam menores que as nativamente maiúsculas */
+
+    /* Combinação das propriedades 'font-style', 'font-variant', 'font-weight', 'font-size/line-height', 'font-family', com os parâmetros nesta ordem respectivamente */
+    font: italic small-caps bold 12px/30px Georgia, serif;
+    font: caption; /* Um padrão para legendas, como a legenda em um botão */
+    font: icon; /* Um padrão para ícones */
+    font: menu; /* Um padrão para dropdown menus */
+    font: message-box; /* Um padrão para caixas de diálogo */
+    font: small-caption; /* Uma versão menor do padrão 'caption' */
+    font: status-bar; /* Um padrão para barras de status */
+}
+
+.efeitos {
+    /* Define como os espaços vazios são manuseados */
+    white-space: nowrap; /* Faz o texto não quebrar linha */
+    white-space: pre; /* Faz o texo funcionar como a tag <pre> do HTML */
+
+    /* Define se palavras grandes podem ser quebradas para novas linhas */
+    word-wrap: break-word;
+
+    /* Define o tipo de quebra de linha */
+    word-break: keep-all; /* Quebra apenas em pontos, virgulas, traços, espaço, etc. */
+    word-break: break-all; /* A linha é quebrada em qualquer caractere */
+
+    /* Define como o texto escondido pela propriedade overflow é manuseado */
+    text-overflow: clip; /* Padrão, o texto que transborda é cortado */
+    text-overflow: ellipsis; /* Parecido com o 'clip', porém é adicionado '...' no final do texto para indicar que uma parte foi cortada */
+    text-overflow: "----"; /* Parecido com o 'ellipsis', porém o indicador de corte é a string passada, só funciona no firefox */
+
+    /* Modo de escrita */
+    writing-mode: horizontal-tb; /* Padrão, o texto é escrito verticalmente */
+    writing-mode: vertical-rl; /* O texto é escrito horizontalmente */
+    writing-mode: vertical-lr; /* O texto é escrito horizontalmente da esquerda para direita */
+
+    /* Direção do texto */
+    direction: rtl; /* Define se o texto começa da esquerda ou da direita, 'rtl' = right to left */
+    unicode-bidi: bidi-override; /* Inverte a ordem das letras no texto */
+}

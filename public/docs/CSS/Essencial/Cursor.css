@@ -1,0 +1,5 @@
+/* Define o tipo do cursor: move, cell, none, grab, not-allowed, default, etc. */
+.Elemento { 
+    cursor: move;
+    cursor: pointer; /* Cursor clicável */
+}

@@ -1,0 +1,10 @@
+.elemento {
+    /* Definindo o tipo de exibição de um elemento */
+    /* 
+        inline: Exibe como um <span>, ou seja altura e largura não importam
+        block: Exibe como um <div>
+        inline-block: Para o elemento anterior exibe como block e para o próximo como inline
+        none: O elemento não é exibido
+    */
+    display: flex; /* Um elemento flex */
+}

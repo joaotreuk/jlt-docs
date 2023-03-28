@@ -1,0 +1,23 @@
+table {
+    /* Definie se as células são separadas ou agrupadas */
+    border-collapse: separate; /* Padrão, as células são separadas umas das outras */
+    border-collapse: collapse; /* Todas as células ficam juntas formando uma única célula */
+
+    /* Espaçamento entre células, a propriedade "border-collapse" precisa ser "separate" */
+    border-spacing: 15px; /* Espaçamento igual para todos os lados */
+    border-spacing: 15px 50px; /* [Espaçamento entre células, Espaçamento entre linhas] */
+
+    /* Define a posição da legenda da tabela, padrão: top */
+    caption-side: bottom;
+
+    /* Define se células vazias exibem bordas ou não, padrão: show */
+    empty-cells: hide;
+
+    /* Define se todas células devem ter o mesmo tamanho ou não, padrão: auto */
+    table-layout: fixed; /* Faz todas células terem o mesmo tamanho */
+}
+
+/* CSS - Fazer uma coluna ter o seu tamanho mínimo em relação as demais colunas */
+td.min {
+    width: 1%;
+}

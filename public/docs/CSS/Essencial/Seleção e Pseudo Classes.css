@@ -1,0 +1,44 @@
+/* descendant selector (space) */
+/* child selector (>) */
+/* adjacent sibling selector (+) */
+/* general sibling selector (~) */
+
+/* Seletores */
+div { top: 0 } /* Seleciona todos elementos da tag determinada */
+.minhaClasse { top: 0 } /* Seleciona todos elementos com a classe determinada */
+div .minhaClasse { top: 0 } /* Seleção aninhada, seleciona os elementos que se apliquem a todos os seletores aninhados */
+div > p { top: 0 } /* Aplica-se a todos os filhos do primeiro selecionador */
+:not(.minhaClasse) { top: 0 } /* Elementos que não contenham uma seleção (uma classe, um atributo, etc.) */
+
+/* Pseudo Classes */
+input:checked { top: 0 } /* Aplica-se aos inputs com o atributo 'checked' como 'true' */
+div:first-child { top: 0 } /* Aplica-se ao primeiro filho do elemento */
+div:hover{ top: 0 } /* Chamado ao passar o mouse por cima do elemento, quando o mouse sair estas propriedades também somem */
+input:invalid{ top: 0 } /* Chamado quando um elemento está inválido e é tentado validar o formulário */
+input:required{ top: 0 } /* Elemento com o atributo required */
+input:valid{ top: 0 } /* Chamado quando um elemento está válido e é tentado validar o formulário */
+
+/* Seletor de irmãos, seleciona todos irmãos, porém apenas aplica o efeito naqueles com a tag específica */
+tr:nth-child(even){ top: 0 } /* Seleciona todos elementos pares na ordem escrita dos irmãos */
+tr:nth-child(odd){ top: 0 } /* Seleciona todos elementos ímpares */
+tr:nth-child(7){ top: 0 } /* Seleciona o sétimo elemento */
+tr:nth-child(5n){ top: 0 } /* Seleciona todos elementos múltiplos de 5 */
+tr:nth-child(3n+2){ top: 0 } /* Seleciona (todos elementos múltiplos de 3) + 2, por exemplo pega: 2, 5, 8, 11 */
+tr:nth-child(-n+3){ top: 0 } /* Seleciona os três primeiros elementos */
+tr:nth-child(n){ top: 0 } /* Seleciona todos elementos */
+tr:nth-child(n+8):nth-child(-n+15){ top: 0 } /* Seleciona os elementos entre as posições 8° e 15° */
+
+/* Igual o seletor acima, porém apenas seleciona apenas os elementos com a tag específica */
+span:nth-of-type(2n+1){ top: 0 }
+
+/* Seleciona elementos com um determinado atributo */
+input[placeholder] { top: 0 } /* Seleciona todos input com o atributo 'placeholder' */
+[name="tipoRadio"] { top: 0 } /* Seleciona os elementos com um atributo igual a um valor */
+[title~="Flor"] { top: 0 } /* Seleciona os elementos cujo atributo contenha uma palavra, a palavra precisa ser separada por espaços,
+    no exemplo ele não pegaria os elementos com o título contendo a palavra "Flores" porque não é a mesma */
+[class|="Flor"] { top: 0 } /* Seleciona os elementos cujo atributo comece com uma palavra, além dos espaços as palavras podem ser separadas por "-" */
+[class^="Flor"] { top: 0 } /* Seleciona os elementos cujo atributo comece com um valor, não precisa ser uma palavra */
+[class$="Flor"] { top: 0 } /* Seleciona os elementos cujo atributo termine com um valor, não precisa ser uma palavra */
+[class*="Flo"] { top: 0 } /* Seleciona os elementos cujo atributo contenha um valor, não precisa ser uma palavra */
+div:not([lang]) { top: 0 } /* Seleciona os elementos que não tenham um atributo */
+table:not([width="100%"]) { top: 0 } /* Seleciona os elementos cujo atributo seja diferente de um valor */

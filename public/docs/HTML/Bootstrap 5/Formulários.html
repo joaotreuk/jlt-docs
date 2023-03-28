@@ -1,0 +1,73 @@
+<form>
+    <label for="iEmail" class="form-label">Email address</label>
+    <!-- O Bootstrap possui uma verificação própria para e-mails e números -->
+    <!-- É possível definir o tamanho do campo com: form-control-lg ou form-control-sm -->
+    <!-- O 'form-control-plaintext' serve para que o input se transforme em um texto plano -->
+    <input type="email" class="form-control" id="iEmail" aria-describedby="passwordHelpBlock">
+    <!-- É possível adicionar um bloco de texto abaixo do campo -->
+    <div id="passwordHelpBlock" class="form-text">
+        Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+    </div>
+
+    <!-- Caixa de seleção -->
+    <!-- É possível definir o tamanho do campo com: form-select-lg ou form-select-sm -->
+    <select class="form-select"></select>
+
+    <!-- Caixa de checagem ou de radio -->
+    <!-- Adicionar "form-switch" transformará as caixas em switches -->
+    <!-- Adicionar "form-check-inline" para deixar inline -->
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <!-- É possível deixar a caixa de checagem ou a de radio na forma de um botão -->
+    <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+    <label class="btn btn-primary" for="btn-check">Single toggle</label>
+
+    <!-- Input com pré texto ou pós texto -->
+    <!-- Adicionar "flex-nowrap" para fazer o grupo não se quebrar conforme responsividade -->
+    <!-- É possível definir o tamanho do grupo com: input-group-lg ou input-group-sm -->
+    <div class="input-group">
+        <button class="btn btn-outline-secondary" type="button">Button</button>
+        <span class="input-group-text">$</span>
+        <input type="text" class="form-control">
+        <input type="text" class="form-control">
+        <span class="input-group-text">.00</span>
+    </div>
+
+    <!-- Caixa de seleção de cor -->
+    <input type="color" class="form-control form-control-color">
+
+    <!-- Caixa de escolha de arquivo -->
+    <!-- É possível definir o tamanho do campo com: form-file-lg ou form-file-sm -->
+    <div class="form-file">
+        <input type="file" class="form-file-input" id="customFile">
+        <label class="form-file-label" for="customFile">
+            <span class="form-file-text">Choose file...</span>
+            <span class="form-file-button">Browse</span>
+        </label>
+    </div>
+
+    <!-- Caixa de alcance -->
+    <input type="range" class="form-range">
+</form>
+
+<!-- Validação de formulário -->
+<form class="needs-validation">
+  <!-- Elementos validos ganham a classe "is-valid" e elementos inválidos ganham a classe "is-invalid" -->
+  <div class="row">
+      <div class="col-lg-4">
+          <label for="iDataInicial" class="font-weight-bold">Data Inicial</label>
+          <input type="date" id="iDataInicial" class="form-control" required />
+          <div class="invalid-feedback">Este campo é obrigatório!</div> <!-- Caso esteva com a pseudo classe de inválido -->
+          <div class="valid-feedback">Muito Bom!</div> <!-- Caso esteva com a pseudo classe de válido -->
+      </div>
+      <!-- Usando caixas de dica -->
+      <div class="col-md-4 position-relative">
+          <label for="validationTooltip01" class="form-label">First name</label>
+          <input type="text" class="form-control" id="validationTooltip01" value="Mark" required>
+          <div class="valid-tooltip">Looks good!</div>
+          <div class="invalid-tooltip">Please choose a unique and valid username.</div>
+      </div>
+  </div>
+</form>

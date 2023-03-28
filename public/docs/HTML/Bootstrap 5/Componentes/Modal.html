@@ -1,0 +1,62 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#minhaModal">Chamar Modal</button>
+
+<!-- Atributo data-keyboard="false" para fazer a modal não ser fechada ao clicar na tecla 'Esc' -->
+<!-- Atributo data-backdrop="static" para fazer a modal não ser fechada ao clicar fora da mesma -->
+<div id="minhaModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel">
+    <!-- Classe 'modal-dialog-scrollable' para fazer a modal ser rolável -->
+    <!-- Classe 'modal-dialog-centered' para fazer a modal ser centralizada no centro da tela -->
+    <!-- Classes 'modal-sm', 'modal-lg', 'modal-xl' para definir o tamanho da modal, padrão: 500px -->
+    <!-- Classe 'modal-fullscreen' para deixar a modal em tela cheia
+        Também pode se adicionar tela cheia apenas para um tamanho de dispositivo especifico acrescentando 'modal-fullscreen-xl-down' ou ['sm', 'md' e 'lg'] -->
+    <div class="modal-dialog"> 
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Cria uma modal para o elemento
+    let modal = new bootstrap.Modal(elemento)
+    let modal = new bootstrap.Modal(elemento, { // Opções
+        backdrop: true, // 'static' para fazer a modal não ser fechada ao clicar fora da mesma
+        keyboard: true, // Se fecha ou não a modal ao apertar a tecla 'Esc'
+        focus: true, // Se coloca ou não foca na modal quando a mesma for iniciada
+        show: true // Se a modal já aparece ou não ao ser criada
+    })
+
+    // Obter o objeto Modal de um elemento
+    let modal = bootstrap.Modal.getInstance(elemento)
+
+    // Manipulando a modal
+    modal.show() // Mostra a modal
+    modal.hide() // Esconder a modal
+    modal.toggle() // Mostra ou esconde a modal
+    modal.dispose() // Remove a modal do elemento
+    modal.handleUpdate() // Reajustar o tamanho da modal
+
+    // Evento chamado após a modal aparecer
+    minhaModal.addEventListener('shown.bs.modal', (evento) => {
+        // Fazer um elemento receber foco quando a modal aparecer
+        elemento.focus()
+
+        // Botão que chamou a modal
+        event.relatedTarget
+    })
+
+    // Outros eventos
+    minhaModal.addEventListener('show.bs.modal', (evento) => {}) // Evento chamado antes da modal aparecer
+    minhaModal.addEventListener('hide.bs.modal', (evento) => {}) // Evento chamado antes da modal ser escondida
+    minhaModal.addEventListener('hidden.bs.modal', (evento) => {}) // Evento chamado após a modal ser escondida
+    minhaModal.addEventListener('hidePrevented.bs.modal', (evento) => {}) /* Evento chamado quando o usuário clica fora da modal ou aperta 'Esc' enquando as opções 
+        definem que a modal não fecha ao fazer uma destas ações */

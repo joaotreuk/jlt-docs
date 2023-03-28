@@ -1,0 +1,54 @@
+div {
+    /* Posição do elemento */
+    position: static; /* Posição padrão, não é afetado pelas propriedades de direcionamento */
+    position: relative; /* Relativo a sua posição padrão, se afastará de sua posição padrão com base nos valores pasados pelas propriedades de direcionamento */
+    position: fixed; /* Baseado na janela de exibição, permanecerá no mesmo lugar sempre, mesmo se a página for rolada,
+        as propriedades de direcionamento são usadas para definir a posição */
+    position: absolute; /* Parecido com o 'fixed' porém é relativo a seu elemento pai ao invés da janela de exibição, porém seu elemento pai não pode ter a posição 'static' */
+    position: sticky; /* É uma posição 'relative' até a página for rolada, quando ele é rolado para fora da página ele se fixa na posição determinada pelas propriedades de
+        direcionamento */
+
+    /* Propriedades de direcionamento, suas funcionalidades variam de acordo com a posição do elemento */
+    top: 90px;
+    right: 50%;
+    bottom: 5cm;
+    left: .25rem;
+
+    /* Faz um elemento com uma posição absoluta ficar por cima ou baixo de outro elemento. 
+        No caso de mais de um elemento com posição absoluta aquele que tiver o maior valor fica por cima.
+        Não funciona para elementos com posição 'static' */
+    z-index: 9;
+    z-index: -1; /* Faz o elemento ficar por baixo dos outros */
+
+    /* Define como é manuseado o conteúdo que ultrapassa o tamanho de seu container */
+    overflow: visible; /* Padrão, o conteúdo atravessa o seu container */
+    overflow: hidden; /* O conteúdo que ultrapassa o container é escondido */
+    overflow: scroll; /* Uma barra de rolagem aparece para visualizar o conteúdo que ultrapassa o container */
+    overflow: auto; /* Parecido com o 'scroll', porém a barra de rolagem apenas aparece quando necessária */
+    overflow-x: hidden; /* Define o transbordamento horizontal */
+    overflow-y: scroll; /* Define o transbordamento vertical */
+
+    /* Aplica transformações 2D ou 3D para o elemento */
+    transform: rotate(-20deg); /* ou */ transform: rotateZ(angle);  /* Rotaciona o elemento por um valor em graus */
+    transform: rotateX(40deg); /* Rotaciona horizontalmente o elemento por um valor em graus */
+    transform: rotateY(40deg); /* Rotaciona verticalmente o elemento por um valor em graus */
+    transform: rotate3d(x, y, z, angle);
+    transform: skewX(40deg); /* Enviesa o elemento horizontalmente por um valor em graus */
+    transform: skewY(20deg); /* Enviesa o elemento verticalmente por um valor em graus */
+    transform: skew(10deg, 5deg); /* Enviesa o elemento horizontalmente e verticalmente */
+    transform: scaleX(1.5); /* Estica o elemento horizontalmente */
+    transform: scaleY(1.5); /* Estica o elemento verticalmente */
+    transform: scaleZ(1.5);
+    transform: scale(0.5, 2); /* Estica o elemento horizontalmente e verticalmente */
+    transform: scale3d(x, y, z);
+    transform: translateX(-25px); /* Move o elemento horizontalmente */
+    transform: translateY(100px); /* Move o elemento verticalmente */
+    transform: translateZ(25px);
+    transform: translate(50px, 50px); /* Move o elemento horizontalmente e verticalmente */
+    transform: translate3d(x, y, z);
+    transform: matrix(0.866, 0.5, -0.5, 0.866, 0, 0); /* Combinação das outras transformações [scaleX, skewY, skewX, scaleY, translateX, translateY] */
+    transform: matrix3d(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n);
+
+    /* Mover um elemento transformado, [eixo-x, eixo-y, eixo-z] */
+    transform-origin: 20% 40% 0;
+}

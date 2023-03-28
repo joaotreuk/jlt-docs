@@ -1,0 +1,23 @@
+<div class="container"> <!-- Conteudo -->
+    <div class="row"> <!-- Linha do conteudo -->
+        <div class="col"></div> <!-- Coluna da linha -->
+        <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-8"></div> <!-- Diferentes tamanhos para a coluna para tamanhos de tela diferentes -->
+    </div>
+    <div class="row justify-content-* align-items-*">
+        <div class="col align-self-* order-12"></div>
+        <div class="col order-2"></div> <!-- Colunas que tiverem o menor "order" aparecem primeiro, também podesse usar o controle de tamanho: -md-, -xl-, etc. -->
+        <div class="col-xl-2 col-auto pl-0 pr-0"></div> <!-- Coluna vazia para controlar quebra de linha entre a grid -->
+    </div>
+</div>
+
+<!-- Centraliza Verticalmente o conteúdo dentro da div -->
+<div class="d-flex flex-wrap align-content-center">Texto</div>
+
+<!-- Centraliza Verticalmente o conteúdo -->
+<div class="d-flex align-items-center">
+    <div>Conteudo</div>
+    <div class="ml-auto">Conteudo</div> <!-- Faz esta div ficar na extrema direita -->
+</div>
+
+<!-- Usar flex em um col -->
+<div class="d-flex col-xl-3 align-items-end"></div>

@@ -22,6 +22,8 @@ def get_directory_structure(pasta):
         objeto["id"] = item
         objeto["fileExtension"] = "cs"
         objeto["name"] = "c#"
+      elif item == "CSS":
+        objeto["fileExtension"] = "css"
       elif item == "Dart":
         objeto["fileExtension"] = "dart"
       elif item == "HTML":

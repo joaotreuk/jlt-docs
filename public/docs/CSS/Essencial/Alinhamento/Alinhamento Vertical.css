@@ -1,0 +1,11 @@
+div { 
+    /* Alinhamento vertical pode ser aplicado para o texto de células de uma tabela */
+    vertical-align: baseline; /* Valor padrão, alinha no centro em relação ao seu elemento pai */
+    vertical-align: top; /* Alinha no topo do elemento pai */
+    vertical-align: middle; /* Alinha no meio do elemento pai */
+    vertical-align: bottom; /* Alinha na parte inferior do elemento pai */
+    vertical-align: text-top; /* Alinha para cima em relação ao seu elemento pai */
+    vertical-align: text-bottom; /* Alinha para baixo em relação ao seu elemento pai */
+    vertical-align: sub; /* Subscreve o elemento em relação ao seu elemento pai */
+    vertical-align: super; /* Sobrescreve o elemento em relação ao seu elemento pai */
+}

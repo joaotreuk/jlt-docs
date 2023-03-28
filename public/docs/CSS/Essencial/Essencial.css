@@ -1,0 +1,42 @@
+/*
+Site para verificar a compatibilidade de um elemento CSS para e-mail
+https://www.caniemail.com/search
+*/
+
+div {
+    /* Valores gerais */
+    margin-left: inherit; /* Faz o elemento herdar um determinado atributo do seu elemento pai */
+    padding-right: initial; /* Aplica o valor padrão de um determinado atributo */
+    flex-direction: unset; /* Define o atributo como não setado */
+
+    /* Calcular valores, retornando o resultado do cálculo */
+    width: calc(100% - 80px);
+
+    /* Tipos de definição de cor */
+    color: red; /* Pelo nome da cor */
+    color: #ff0000; /* Por hexadecimal */
+    color: rgb(255, 0, 0); /* Por RGB */
+    color: rgba(255, 0, 0, 0.3); /* RGBA é RGB + O nível de opacidade */
+    color: hsl(0, 100%, 50%); /* Por HSL */
+    color: hsla(120, 60%, 70%, 0.3); /* HSLA é HSL + O nível de opacidade */
+    color: transparent; /* Transparente */
+    border-color: currentcolor; /* É o valor da propriedade 'color' do elemento */
+
+    /* -- Unidades
+        cm 	 centimeters
+        mm 	 millimeters
+        in 	 inches (1in = 96px = 2.54cm)
+        px * pixels (1px = 1/96th of 1in)
+        pt 	 points (1pt = 1/72 of 1in)
+        pc 	 picas (1pc = 12 pt) 
+        em 	 Relative to the font-size of the element (2em means 2 times the size of the current font) 	
+        ex 	 Relative to the x-height of the current font (rarely used) 	
+        ch 	 Relative to width of the "0" (zero) 	
+        rem  Relative to font-size of the root element 	
+        vw 	 Relative to 1% of the width of the viewport* 	
+        vh 	 Relative to 1% of the height of the viewport* 	
+        vmin Relative to 1% of viewport's* smaller dimension 	
+        vmax Relative to 1% of viewport's* larger dimension 	
+        % 	 Relative to the parent element
+    */
+}
