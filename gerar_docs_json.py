@@ -32,6 +32,8 @@ def get_directory_structure(pasta):
         objeto["fileExtension"] = "ps1"
       elif item == "Razor":
         objeto["fileExtension"] = "cshtml"
+      elif item == "SQL Server":
+        objeto["fileExtension"] = "sql"
       elif item == "TypeScript":
         objeto["fileExtension"] = "ts"
 

@@ -1,0 +1,1 @@
+-- O Management Studio exibe valores binários em hexadecimal
