@@ -1,0 +1,39 @@
+<!-- Formulário -->
+<form name="NomeFormulario" method="Metodo" action="a_quem_vai_submeter">
+
+  <!-- Campos do Formuário -->
+  <input type="text" name="nome" size="20" value="valor inicial"> <!-- Caixa de texto -->
+  <textarea rows="4" name="texto" cols="20">[texto inicial de varias linhas]</textarea> <!-- Caixa de texto de várias linhas -->
+  <input id="id" type="date" value="2017-06-01"> <!-- Caixa de seleção de data -->
+  <input type="file" name="F1" size="20"> <!-- Entrada de arquivo -->
+  <input type="checkbox" name="opcao" value="ON" checked> <!-- Caixa de opção -->
+  <input type="radio" value="masculino" checked name="sexo"> <!-- Botão de seleção -->
+
+  <!-- Caixa suspensa -->
+  <select size="1" name="estadocivil"> 
+    <option value=c>casado</option>
+    <option value=s selected>solteiro</option>
+    <option>desquitado</option>
+  </select>
+  <select multiple></select> <!-- Caixa suspensa de múltiplos valores -->
+
+  <!-- Input com uma lista -->
+  <input list="dlLista" />
+  <datalist id="dlLista">
+      <option value="1">Teste</option>
+      <option value="2">Teste2</option>
+  </datalist>
+
+  <!-- Input de senha, autocomplete = new-password permite que a senha não seja preenchida automaticamente -->
+  <!-- Adicionar readonly e função para remover o readonly em foco para evitar parcialmente que o navegador preencha os campos -->
+  <input type="password" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')">
+
+  <!-- Botões -->
+  <input type="button" value="Botão" name="B3"> <!-- Botão de ação: O botão de ação serve para iniciar um script que roda no computador do cliente (geralmente javascript) -->
+  <input type="reset" value="Redefinir" name="B2"> <!-- Botão reset: O botão reset é utilizado para redefinir os campos do formulário -->
+  <input type="submit" value="Submeter" name="B1"> <!-- Botão submit: O botão submit, submete os valores dos campos do formulário para um script trabalhar com estes valores.
+    O nome do arquivo que contem este script deve ser referenciado na cláusula action do formulário. -->
+</form>
+
+<!-- Formulário para envio de arquivos -->
+<form action="grava.php" method="POST" enctype="multipart/form-data"></form>
