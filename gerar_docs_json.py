@@ -32,6 +32,8 @@ def get_directory_structure(pasta):
         objeto["fileExtension"] = "ps1"
       elif item == "Razor":
         objeto["fileExtension"] = "cshtml"
+      elif item == "TypeScript":
+        objeto["fileExtension"] = "ts"
 
       estrutura.append(objeto)
     elif os.path.isfile(caminho):
