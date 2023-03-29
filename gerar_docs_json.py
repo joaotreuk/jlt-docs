@@ -30,6 +30,10 @@ def get_directory_structure(pasta):
         objeto["fileExtension"] = "html"
       elif item == "JavaScript":
         objeto["fileExtension"] = "js"
+      elif item == "Markdown":
+        objeto["fileExtension"] = "md"
+      elif item == "Pascal":
+        objeto["fileExtension"] = "pas"
       elif item == "PowerShell":
         objeto["fileExtension"] = "ps1"
       elif item == "Razor":
