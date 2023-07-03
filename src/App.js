@@ -54,6 +54,13 @@ function App() {
 	const arquivoClick = arquivo => {
 		setShowModal(false);
 		setShowOffcanvas(false);
+
+		// Se for um arquivo, então abre
+		if (arquivo.file) {
+			window.open(`docs/${pastaSelecionada.lang.id}/${pastaSelecionada.name}/${arquivo.file}`, '_blank');
+			return;
+		}
+
 		setArquivoSelecionado(arquivo);
 	};
 
@@ -101,7 +108,7 @@ function App() {
 
 	// Clique no sub item do menu
 	const subPastaClick = (pasta, subPasta) => {
-		// Se for um arquivo abre
+		// Se for um arquivo, então abre
 		if (subPasta.file) {
 			window.open(`docs/${pasta.id}/${subPasta.file}`, '_blank');
 			return;

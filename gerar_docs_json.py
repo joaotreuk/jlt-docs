@@ -22,12 +22,6 @@ def get_directory_structure(pasta):
         objeto["id"] = item
         objeto["fileExtension"] = "cs"
         objeto["name"] = "c#"
-      elif item == "CSS":
-        objeto["fileExtension"] = "css"
-      elif item == "Dart":
-        objeto["fileExtension"] = "dart"
-      elif item == "HTML":
-        objeto["fileExtension"] = "html"
       elif item == "JavaScript":
         objeto["fileExtension"] = "js"
       elif item == "Markdown":
@@ -42,12 +36,14 @@ def get_directory_structure(pasta):
         objeto["fileExtension"] = "sql"
       elif item == "TypeScript":
         objeto["fileExtension"] = "ts"
+      else:
+        objeto["fileExtension"] = item.lower()
 
       estrutura.append(objeto)
     elif os.path.isfile(caminho):
-      # Salva diferente os arquivos xlsx
+      # Salva arquivos que não são de texto com propridade p/ serem baixados
       partesNome = os.path.splitext(item)
-      if partesNome[1] == ".xlsx":
+      if partesNome[1] == ".xlsx" or partesNome[1] == ".docx":
         estrutura.append({
           "name": partesNome[0],
           "file": item
