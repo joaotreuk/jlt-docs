@@ -1,6 +1,4 @@
 # Instalação
-dotnet add package Microsoft.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.Sqlite # Instalando o Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Design # Necessário para fazer migrations e modificar bancos
 dotnet tool install --global dotnet-ef # Instalar os comandos da biblioteca
 

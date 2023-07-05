@@ -23,6 +23,9 @@ int item = matriz.Last();
 /// <returns>O maior valor</returns>
 int maiorValor = matriz.Max();
 
+// Criar um Enumerable com uma lista de números
+IEnumerable<int> matriz = Enumerable.Range(numero_inicial, qtd_itens);
+
 /// <summary>Faz uma seleção de uma propriedade do objeto</summary>
 IEnumerable<string> nomes = matriz.Select(aluno => aluno.Nome);
 

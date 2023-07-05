@@ -1,28 +1,29 @@
+// Biblioteca para gerenciamento de banco de dados na aplicação
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Sqlite; // Para banco SqlLite
+using Microsoft.EntityFrameworkCore.SqlServer; // Para banco SQL Server
 
-namespace MeuAplicativo.Data
+// Classe do contexto do banco de dados deve herdar de DbContext
+public class DbContexto : DbContext { }
+
+// Definindo uma tabela que será gerada a partir de uma classe
+public DbSet<Entidade> Entidades { get; set; }
+
+// Configurações
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
+optionsBuilder.UseSqlite("Data Source=MeuAplicativo.db"); // Configurar p/ usar SqlLite
+optionsBuilder.UseSqlServer("Server=(local);Database=study_dot_net;Trusted_Connection=True;");  // Configurar p/ usar SQL Server
+
+// Sobrescrevendo método para definir chaves compostas de tabelas
+protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
-    public class ContextoBanco : DbContext
-    {
-        // Definindo uma tabela que será gerada pelos comandos da biblioteca a partir de uma classe
-        // Também pode ser usada como uma query
-        // DbSet tem os mesmo métodos de "Evento[]"
-        public DbSet<Tabela> Itens { get; set; }
-
-        // Definindo a string de conexão com Sqlite e o nome do arquivo do banco de dados
-        protected override void OnConfiguring(DbContextOptionsBuilder opcoes) => opcoes.UseSqlite("Data Source=MeuAplicativo.db");
-
-        // Sobrescrevendo método para definir chaves compostas de tabelas
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Tabela>().HasKey(tabela => new { 
-                tabela.Id1, // Cada campo que compõe a chave composta
-                tabela.Id2
-            });
-        }
-    }
+  modelBuilder.Entity<Tabela>().HasKey(tabela => new
+  {
+    tabela.Id1, // Cada campo que compõe a chave composta
+    tabela.Id2
+  });
 }
- 
+
 // Adicionar para o arquivo "Startup.cs" para o contexto de dados ser adicionado ao projeto antes dos controladores
 services.AddDbContext<DataContext>();
 

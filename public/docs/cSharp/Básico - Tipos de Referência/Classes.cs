@@ -21,7 +21,8 @@ MinhaClasse minhaClasse = new MinhaClasse();
 MinhaClasse minhaClasse = new(); // Igual o comando acima, porém simplificado
 MinhaClasse minhaClasse = new MinhaClasse(parametro); // Passando um parâmetro para o método construtor
 
-// Propriedades
+/*-------------------- PROPRIEDADES --------------------*/
+
 private int minhaPropriedade; // Propriedade privada
 public string MinhaPropriedade { get; set; } // Propriedade pública
 public string MinhaPropriedade { get; private set; } // Definindo apenas o set como privado
@@ -33,6 +34,9 @@ public int MinhaPropriedade
     get { return minhaPropriedade; } // É preciso usar uma propriedade privada de meio de campo
     set { minhaPropriedade = value + 1; } // "value" é o valor setado
 }
+
+// Get manual simplificado
+public int PropriedadeB => PropriedadeA + 2;
 
 // Pode-se acessar uma propriedade da classe usando o 'this', p/ quando a uma variável com o mesmo nome por exemplo
 this.propriedade;
