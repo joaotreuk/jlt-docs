@@ -28,6 +28,9 @@ public string MinhaPropriedade { get; set; } // Propriedade pública
 public string MinhaPropriedade { get; private set; } // Definindo apenas o set como privado
 public static int Variavel = 1; // Propriedade estática (Pode ser acessada sem a instanciação da classe)
 
+// Definir que a propriedade é obrigatória, o valor deve sempre ser passado em instânciações
+public required string Nome { get; set; }
+
 // Definindo manualmente um método set ou get de uma propriedade
 public int MinhaPropriedade
 {

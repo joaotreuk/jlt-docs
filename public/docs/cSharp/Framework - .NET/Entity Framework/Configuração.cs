@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.SqlServer; // Para banco SQL Server
 // Classe do contexto do banco de dados deve herdar de DbContext
 public class DbContexto : DbContext { }
 
-// Definindo uma tabela que será gerada a partir de uma classe
-public DbSet<Entidade> Entidades { get; set; }
-
 // Configurações
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 optionsBuilder.UseSqlite("Data Source=MeuAplicativo.db"); // Configurar p/ usar SqlLite
 optionsBuilder.UseSqlServer("Server=(local);Database=study_dot_net;Trusted_Connection=True;");  // Configurar p/ usar SQL Server
+
+// Definindo uma tabela que será gerada no migrations a partir de uma classe
+public DbSet<Entidade> Entidades { get; set; }
 
 // Sobrescrevendo método para definir chaves compostas de tabelas
 protected override void OnModelCreating(ModelBuilder modelBuilder)
