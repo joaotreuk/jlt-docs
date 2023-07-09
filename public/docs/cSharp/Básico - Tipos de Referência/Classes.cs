@@ -11,15 +11,18 @@ ou proprieades abstratas */
 abstract class Forma { public abstract int GetArea(); } // Com um método abstrato
 class Quadrado : Forma { public override int GetArea() => side * side; } // Dar override no método abstrato da classe abstrata
 
-// Definindo um atributo para uma classe ou método
-// Atributos servem para orientar operações
-[Atributo]
-public class MinhaClasse { }
-
 // Atribuição
 MinhaClasse minhaClasse = new MinhaClasse();
 MinhaClasse minhaClasse = new(); // Igual o comando acima, porém simplificado
 MinhaClasse minhaClasse = new MinhaClasse(parametro); // Passando um parâmetro para o método construtor
+
+// Parâmetros Genéricos
+// Podem ser passados para objetos ou métodos
+public class MinhaClasse<T> { }
+public void MeuMetodo<T>(T parametro) { T variavel; }
+// Restrição p/ método genérico, no exemplo diz que o tipo a ser passado precisa ser uma classe
+public void MeuMetodo<T>() where T : class { }
+minhaClasse.MeuMetodo<int>(); // Chamando um método genérico
 
 /*-------------------- PROPRIEDADES --------------------*/
 
@@ -64,12 +67,6 @@ public void MeuMetodo(out int param) { param = 44; } // Parâmetro cujas modific
 // Pode ser executado com ou sem a instanciação da classe
 static public void MeuMetodo() { }
 MinhaClasse.MeuMetodo(); // Usando um método estático (sem precisar criar o objeto)
-
-// Usando um objeto genérico para o método
-public void MeuMetodo<T>(T parametro) { T variavel; }
-// Restrição p/ método genérico, no exemplo diz que o tipo a ser passado precisa ser uma classe
-public void MeuMetodo<T>() where T : class {}
-minhaClasse.MeuMetodo<int>(); // Chamando um método genérico
 
 // Método de extensão
 // Adicionar um novo método para um tipo existente sem modifica-lo

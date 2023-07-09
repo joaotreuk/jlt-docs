@@ -7,6 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Adicionar serviço de controllers para API
 builder.Services.AddControllers();
 
+// Injeção de dependências
+builder.Services.AddDbContext<DbContexto>(); // Contexto do banco de dados
+builder.Services.AddScoped<IEntidadeRepository, EntidadeRepository>(); // Interfaces X classes
+
 // Constroi a web aplicação
 var app = builder.Build();
 

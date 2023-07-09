@@ -12,6 +12,7 @@ optionsBuilder.UseSqlite("Data Source=MeuAplicativo.db"); // Configurar p/ usar 
 optionsBuilder.UseSqlServer("Server=(local);Database=study_dot_net;Trusted_Connection=True;");  // Configurar p/ usar SQL Server
 
 // Definindo uma tabela que será gerada no migrations a partir de uma classe
+// Campos 'Id' parece que vão receber um identity automaticamente
 public DbSet<Entidade> Entidades { get; set; }
 
 // Sobrescrevendo método para definir chaves compostas de tabelas
@@ -23,12 +24,6 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
     tabela.Id2
   });
 }
-
-// Adicionar para o arquivo "Startup.cs" para o contexto de dados ser adicionado ao projeto antes dos controladores
-services.AddDbContext<DataContext>();
-
-// Adicionar o escopo do serviço usando a interface e a classe a qual a interface se aplica, logo após o serviço acima
-services.AddScoped<IProAgilRepositorio, ProAgilRepositorio>();
 
 // Manipulando dados pelo contexto
 ContextoBanco.Add(Item); // Adicionar um item para sua tabela

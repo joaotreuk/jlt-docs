@@ -1,4 +1,4 @@
-//Uma partial class divide uma classe em partes
+// Uma partial class divide uma classe em partes
 public partial class Geeks { 
     private string AutorNome; 
     private int NumeroDeArtigos; 
@@ -19,7 +19,7 @@ public partial class Geeks {
     } 
 } 
 
-//A classe sem ser dividid
+// A classe sem ser dividida
 public class Geeks { 
     private string AutorNome; 
     private int NumeroDeArtigos; 
