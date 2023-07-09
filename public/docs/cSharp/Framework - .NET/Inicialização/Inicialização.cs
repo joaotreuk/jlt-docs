@@ -17,10 +17,6 @@ var app = builder.Build();
 // Verifica se está dando build em um ambiente de desenvolvimento
 bool isDevelopment = app.Environment.IsDevelopment();
 
-// Registrar o Swagger
-app.UseSwagger();
-app.UseSwaggerUI();
-
 // Registrar opções de web aplicações
 app.UseHttpsRedirection();
 app.UseAuthorization(); // Autenticação

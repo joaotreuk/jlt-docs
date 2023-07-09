@@ -25,13 +25,16 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
   });
 }
 
+// Acessar uma tabela dinâmicamente
+DbSet<T> tabela = _contexto.Set<T>();
+
 // Manipulando dados pelo contexto
-ContextoBanco.Add(Item); // Adicionar um item para sua tabela
-ContextoBanco.Update(Item); // Atualizar um item
-ContextoBanco.Remove(Item); // Deletar um item
-ContextoBanco.RemoveRange(Itens); // Deletar uma array de itens
-int linhasAfetadas = ContextoBanco.SaveChanges(); // Salvar mudança de um item (Adicionar, Atualizar, Deletar)
-int linhasAfetadas = await ContextoBanco.SaveChangesAsync(); // Igual o método acima porém assíncrono
+_contexto.Add(Item); // Adicionar um item para sua tabela
+_contexto.Update(Item); // Atualizar um item
+_contexto.Remove(Item); // Deletar um item
+_contexto.RemoveRange(Itens); // Deletar uma array de itens
+int linhasAfetadas = _contexto.SaveChanges(); // Salvar mudança de um item (Adicionar, Atualizar, Deletar)
+int linhasAfetadas = await _contexto.SaveChangesAsync(); // Igual o método acima porém assíncrono
 
 // Rastreamento de entidade
 // Define se manterá informações sobre uma instância de entidade em seu rastreador de alterações
