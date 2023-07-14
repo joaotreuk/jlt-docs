@@ -3,8 +3,7 @@ using Unity.Lifetime;
 
 /*-------------------- DECLARAÇÃO / ATRIBUIÇÃO --------------------*/
 
-// O serviço é instanciado apenas um vez
-// O código só passa pelo construtor uma vez, daí fica com o objeto salvo em cache
+// Uma única instância é criada durante toda a vida da aplicação
 ITypeLifetimeManager tipo = TypeLifetime.Singleton;
 
 // Tipo de ciclo de vida padrão dos containers

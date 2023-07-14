@@ -7,7 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Adicionar serviço de controllers para API
 builder.Services.AddControllers();
 
-// Injeção de dependências
+// Contêiner de injeção de dependências
+// Objetos que teram seu ciclo de vida gerenciados pelo contêiner. Podendo serem injetados no método construtor de controllers ou classes
+// O contêiner de injeção de dependência será responsável por criar uma instância do objeto e injetá-la automaticamente no controlador
+// O contêiner fará o dispose no final do tipo de escopo definido
+/*
+  Tipos de escopos de injeção de dependencia:
+  Transient: Uma nova instância é criada a cada solicitação HTTP.
+  Scoped: Uma instância é criada para cada escopo de solicitação HTTP. É a opção mais comumente usada em aplicativos web.
+  Singleton: Uma única instância é criada durante toda a vida da aplicação.
+*/
 builder.Services.AddDbContext<DbContexto>(); // Contexto do banco de dados
 builder.Services.AddScoped<IEntidadeRepository, EntidadeRepository>(); // Interfaces X classes
 

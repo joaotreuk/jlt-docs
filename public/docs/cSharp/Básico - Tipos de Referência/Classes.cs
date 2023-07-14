@@ -20,7 +20,7 @@ MinhaClasse minhaClasse = new MinhaClasse(parametro); // Passando um parâmetro 
 // Podem ser passados para objetos ou métodos
 public class MinhaClasse<T> { }
 public void MeuMetodo<T>(T parametro) { T variavel; }
-// Restrição p/ método genérico, no exemplo diz que o tipo a ser passado precisa ser uma classe
+// Restrição p/ método genérico, no exemplo diz que o tipo a ser passado precisa herdar de um class, pode-se usar qualquer tipo
 public void MeuMetodo<T>() where T : class { }
 minhaClasse.MeuMetodo<int>(); // Chamando um método genérico
 

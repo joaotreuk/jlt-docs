@@ -6,9 +6,6 @@ Console.WriteLine("Hello World!"); // Escreve o texto em uma nova linha
 using App.MinhaBiblioteca;
 using Apelido = App.MinhaBiblioteca.NomeClasse; // Definindo um apelido para a classe importada, útil quando a mais de uma classe com o mesmo nome
 
-// Using simplificado
-using Elemento elemento = new Elemento();
-
 // Variáveis
 public readonly int Variavel = 1; // Variável de apenas leitura
 Nullable<int> nulo = null; // Variável que permite valores nulos
