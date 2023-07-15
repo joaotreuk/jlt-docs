@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 // Objetos que teram seu ciclo de vida gerenciados pelo contêiner. Podendo serem injetados no método construtor de controllers ou classes
 // O contêiner de injeção de dependência será responsável por criar uma instância do objeto e injetá-la automaticamente no controlador
 // O contêiner fará o dispose no final do tipo de escopo definido
+// Injeção de dependencia também serve para evitar ter que ficar criando instnacias de depencias manualmente
 /*
   Tipos de escopos de injeção de dependencia:
   Transient: Uma nova instância é criada a cada solicitação HTTP.

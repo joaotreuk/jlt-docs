@@ -1,5 +1,5 @@
 // Conexão com banco de dados
-SqlConnection conexao = new SqlConnection("StringDeConexao");
+using SqlConnection conexao = new SqlConnection("StringDeConexao");
 
 // Propriedades
 conexao.State; // Estado da conexão, exemplo: "ConnectionState.Closed" indica que a conexão está fechada

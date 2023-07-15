@@ -1,4 +1,6 @@
 // Bilbioteca para propósitos gerais de container de inversão de controle
+/* O UnityContainer é responsável por gerenciar o ciclo de vida dos tipos. Geralmente, o ciclo de vida padrão é Transient, o que
+significa que uma nova instância será criada sempre que o contexto for injetado em uma dependência */
 using Unity;
 using Unity.Mvc5;
 
@@ -30,3 +32,11 @@ container = container.RegisterType<IMeuServico, MeuServico2>("Meu serviço");
 // Por padrão usa Transient
 container = container.RegisterType<MeuProjetoDataContext>("Meu serviço", TypeLifetime.Singleton);
 container = container.RegisterType<IMeuServico, MeuServico2>("Meu serviço", TypeLifetime.Singleton);
+
+/* Configure UnityContainer as the dependency resolver for the application, which means that whenever the ASP.NET MVC framework needs to
+resolve a dependency, it will use UnityContainer */
+DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+
+/* Explicitly resolve a specific instance or type from the container. It directly retrieves an instance from the container by specifying
+the type you want to resolve */
+var dataContext = container.Resolve<DataContext>();

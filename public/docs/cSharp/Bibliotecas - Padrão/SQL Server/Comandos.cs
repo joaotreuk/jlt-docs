@@ -2,9 +2,10 @@ using System.Data;
 using System.Data.SqlClient;
 
 // Declaração / Atribuição
-SqlCommand comando = new SqlCommand(query, conexao);
-SqlCommand comando = new SqlCommand(query, conexao, transacao);
-SqlCommand comando = conexao.CreateCommand(); // Cria um comando a partir de sua conexão
+using SqlCommand comando = new SqlCommand();
+using SqlCommand comando = new SqlCommand(query, conexao);
+using SqlCommand comando = new SqlCommand(query, conexao, transacao);
+using SqlCommand comando = conexao.CreateCommand(); // Cria um comando a partir de sua conexão
 
 
 /*-------------------- PROPRIEDADES --------------------*/
