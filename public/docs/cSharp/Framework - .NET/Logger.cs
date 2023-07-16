@@ -1,4 +1,5 @@
 // Logar informações no console
+// throw gerados vão criar automaticamente um log do tipo error
 using Microsoft.Extensions.Logging;
 
 // Injetar o logger em um controller
@@ -12,6 +13,9 @@ _logger.LogInformation("Mensagem de informação");
 _logger.LogWarning("Mensagem de aviso");
 _logger.LogError("Mensagem de erro");
 _logger.LogCritical("Mensagem crítica");
+
+// Passar um EventId no log
+_logger.LogInformation(eventoId, "Mensagem de informação");
 
 // Nível do log
 LogLevel logLevel = LogLevel.Critical;
@@ -37,6 +41,11 @@ public class DbLogger : ILogger
   {
     // Mensagem do log
     string msg = formatter(state, exception);
+
+    // Informações do evento, passadas na hora do log
+    // Pode-se usar como filtro extra para hora de logar
+    int id = eventId.Id;
+    string nome = eventId.Name;
   }
 }
 

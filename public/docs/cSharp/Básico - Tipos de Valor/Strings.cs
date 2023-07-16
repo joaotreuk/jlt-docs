@@ -28,10 +28,6 @@ string formatado = string.Format("{0:0,0.000}", numero); // Formatar um número,
 string formatado = string.Format("{0:d/M/yyyy HH:mm:ss}", minhaData); // Formatar um campo de data
 string texto = string.Format("{0} - {1}", variavel, variavel2); // Concatenando variáveis em uma string
 
-// Verificações
-bool contem = texto.Contains("Joã"); // Verificar se uma string contém uma sub string
-bool vazio = string.IsNullOrEmpty(texto); // Verificar se uma string é nula ou vazia
-
 // Obter o índice da primeira aparição de um caracter na string
 int indice = texto.IndexOf('.');
 
@@ -41,12 +37,17 @@ int ordem = texto.CompareTo(texto2);
 // Obter uma parte a string a partir de um índice inicial
 string texto = texto.Substring(1);
 
-// Modificação
+// Transformação
 string texto = texto.Insert(4, "-"); // Inserir uma string em outra a partir de um índice específicado, retornando a string modificada
 string texto = texto.Replace(",", "."); // Substituir uma parte da string por outra string
 string texto = texto.ToLower(); // Transformar todos os caracteres do texto em letras minúsculas
 string texto = texto.ToUpper(); // Transformar todos os caracteres do texto em letras maiúsculas
 string texto = texto.Trim(); // Remover os espaços antes e depois da string
+
+// Validação
+bool contem = texto.Contains("Joã"); // Verificar se uma string contém uma sub string
+bool vazio = string.IsNullOrEmpty(texto); // Verificar se uma string é nula ou vazia
+bool vazio = string.IsNullOrWhiteSpace(a); // Igual o anterior, porém também retorna true se todos os caracteres forém espaços em branco
 
 // Quebrar uma string em uma lista, usando um caracter separador
 string[] lista = texto.Split('.');

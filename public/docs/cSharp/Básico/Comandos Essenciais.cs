@@ -38,13 +38,6 @@ catch (Exception e)
 }
 finally { } // Finally passa tanto pelo try quanto pelo catch
 
-// Exceções
-throw; // Chama novamente a exceção que aconteceu em um catch do try catch
-throw new IndexOutOfRangeException(); // Chama uma nova exceção
-throw new ArgumentException("Minha mensagem"); // Chama uma nova exceção definindo a mensagem de erro
-// Exceção de parâmetro nulo, passando o nome do parâmetro que não pode ser nulo
-throw new ArgumentNullException(nameof(entidade), "A entidade não pode ser nula.");
-
 // Obter o nome de uma variável
 // Útil quando você quer rastrear qual o nome da variável que está com inconsistencias
 string nome = nameof(entidade); // Retorna 'entidade'
