@@ -2,27 +2,39 @@
 // Nome do arquivo: "Program.cs"
 
 // Cria uma instância de configurações da aplicação com os defaults
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+// Obter configurações (appsettings.json)
+var section = builder.Configuration.GetSection("ConnectionStrings");
+string? connection = builder.Configuration.GetConnectionString("DefaultConnection"); // Obter ConnectionStrings.DefaultConnection
 
 // Adicionar serviço de controllers para API
 builder.Services.AddControllers();
 
-// Contêiner de injeção de dependências
+// Adicionar serviços de contêiner de injeção de dependências
 // Objetos que teram seu ciclo de vida gerenciados pelo contêiner. Podendo serem injetados no método construtor de controllers ou classes
 // O contêiner de injeção de dependência será responsável por criar uma instância do objeto e injetá-la automaticamente no controlador
 // O contêiner fará o dispose no final do tipo de escopo definido
-// Injeção de dependencia também serve para evitar ter que ficar criando instnacias de depencias manualmente
+// Injeção de dependencia também serve para evitar ter que ficar criando instâncias de dependencias manualmente
 /*
   Tipos de escopos de injeção de dependencia:
   Transient: Uma nova instância é criada a cada solicitação HTTP.
   Scoped: Uma instância é criada para cada escopo de solicitação HTTP. É a opção mais comumente usada em aplicativos web.
-  Singleton: Uma única instância é criada durante toda a vida da aplicação.
+  Singleton: Uma única instância é criada durante toda a vida da aplicação
 */
-builder.Services.AddDbContext<DbContexto>(); // Contexto do banco de dados
-builder.Services.AddScoped<IEntidadeRepository, EntidadeRepository>(); // Interfaces X classes
+builder.Services.AddScoped<EntidadeRepository>(); // Adicionar um Scoped
+builder.Services.AddScoped<IEntidadeRepository, EntidadeRepository>(); // Especificar o tipo e a classe que o implementa
+builder.Services.AddSingleton<ILoggerProvider, DbLoggerProvider>(); // Adicionar um Singleton
+
+// Contexto do banco de dados, Scoped por padrão
+builder.Services.AddDbContext<DbContexto>();
+builder.Services.AddDbContext<DbContexto>(options => {}); // Configurar opções
 
 // Constroi a web aplicação
-var app = builder.Build();
+WebApplication app = builder.Build();
+
+// Acessar serviços configurados
+using IServiceScope scope = app.Services.CreateScope(); // Criar um escopo (para usar serviços Scoped)
 
 // Verifica se está dando build em um ambiente de desenvolvimento
 bool isDevelopment = app.Environment.IsDevelopment();

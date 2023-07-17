@@ -6,6 +6,9 @@ using Microsoft.EntityFrameworkCore.SqlServer; // Para banco SQL Server
 // Classe do contexto do banco de dados deve herdar de DbContext
 public class DbContexto : DbContext { }
 
+// Se configurações forém feitas no Program.cs, então deve-se ter esse construtor
+public DbContexto(DbContextOptions<DbContexto> options) : base(options) { }
+
 // Configurações
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 optionsBuilder.UseSqlite("Data Source=MeuAplicativo.db"); // Configurar p/ usar SqlLite
