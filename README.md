@@ -2,6 +2,9 @@
 
 Aplicativo de minhas documentações resumidas de estudos em programação e banco de dados.
 
+## Comandos
+* `run.bat` - executar a aplicação.
+
 ## Estrutura
 
 * public/docs - Pasta da documentação

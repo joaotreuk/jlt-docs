@@ -41,7 +41,8 @@ bool isDevelopment = app.Environment.IsDevelopment();
 
 // Registrar opções de web aplicações
 app.UseHttpsRedirection();
-app.UseAuthorization(); // Autenticação
+app.UseAuthentication(); // Define que o aplicativo usa alguma autenticação que foi adicionada
+app.UseAuthorization();
 app.MapControllers();
 
 // Após concluir configurações, rodar a aplicação
@@ -69,10 +70,7 @@ public void ConfigureServices(IServiceCollection services)
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
   // Página de exceção para desenvolvimento
-  app.UseDeveloperExceptionPage();
-
-  // Define que o aplicativo usa alguma autenticação que foi adicionada
-  app.UseAuthentication();
+  app.UseDeveloperExceptionPage();  
 
   app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 

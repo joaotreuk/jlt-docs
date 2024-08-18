@@ -1,13 +1,16 @@
-Para executar o cmd em uma pasta basta escrever "cmd" na barra de caminho e apertar "Enter"
-Navegar para uma pasta: pushd D:\Pasta
+# Para executar o cmd em uma pasta basta escrever "cmd" na barra de caminho e apertar "Enter"
+# Copiar conteúdo: Clicar botão direito e selecionar tudo, então clicar com o botão direito de novo
+# Finalizar um comando: CTRL + C
 
-Executar um script: cmd /K Script.py
+# Desligar a exibição dos comandos à medida que eles são executados em um script
+# O símbolo '@' impede a linha atual de ser exibida no terminal
+@echo off
 
-Limpar tela: cls
+# Navegar para uma pasta
+pushd D:\Pasta
 
-Cancelar comando: CTRL + C
+# Executar arquivo bat
+run.bat
 
-Copiar conteúdo: Clicar botão direito e selecionar tudo, então clicar com o botão direito de novo
-
-Lista de IPs: ipgonfig /all
-Lista de MACs: getmac
+# Limpar tela
+cls

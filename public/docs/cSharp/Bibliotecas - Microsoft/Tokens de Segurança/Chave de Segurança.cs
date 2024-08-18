@@ -6,7 +6,8 @@ string minhaChave = "sDkn2983 $$$ sk&#ghs d Wu9eb 84_|8dd SwIjwn+b HHH";
 
 /*-------------------- DECLARAÇÃO / ATRIBUIÇÃO --------------------*/
 
-// Criando a chave usando uma array de bytes, essa array de bytes é normalmente criada usando 'Encoding.UFT8.GetBytes(minhaChave)' passando a chave
+/* Criando a chave usando uma array de bytes, essa array de bytes é normalmente criada usando 'Encoding.UTF8.GetBytes(minhaChave)'
+passando a chave */
 SymmetricSecurityKey chaveSeguranca = new SymmetricSecurityKey(chaveBytes);
 
 /*-------------------- PROPRIEDADES --------------------*/
